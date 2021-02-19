@@ -14,7 +14,7 @@ from Levenshtein import distance
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='?')
 levDistMin = 2
 
 def searchAbility(cardname):
@@ -381,7 +381,7 @@ async def on_error(event, *args, **kwargs):
         else:
             raise
 
-@bot.command(name='ability',help='Returns faction ability information by name.')
+@bot.command(name='ability',brief='Returns faction ability information by name.',help='Searches faction abilities for the specified name or partial match (<arg>).\n\nExample usage:\n?ability assimilate\n?ability entanglement')
 async def lookUpAbility(ctx, *, arg):
     cardinfo, match = searchAbility(arg)
     if match:
@@ -397,13 +397,18 @@ async def lookUpAbility(ctx, *, arg):
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
 
-@bot.command(name='actioncard',help='Returns action card information by name.')
+@lookUpAbility.error
+async def ability_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('ability')
+
+@bot.command(name='actioncard',brief='Returns action card information by name.',help='Searches action cards for the specified name or partial match (<arg>).\n\nExample usage:\n?actioncard sabotage\n?actioncard rise')
 async def lookUpActionCard(ctx, *, arg):
     cardinfo, match = searchAC(arg)
     if match:
         cardlore = cardinfo["Flavour Text"].split("|")
         separator = "\n"
-        if cardinfo["Notes"] == "notes":
+        if cardinfo["Notes"] == "":
             if cardinfo["Quantity"] == "1":
                 await ctx.send(">>> There is " + cardinfo["Quantity"] + " copy of " + cardinfo["Action Card Name"] + " printed in " + cardinfo["Source"] + ".\n__**" + cardinfo["Action Card Name"] + "**__\n**" + cardinfo["Timing"] + ":**\n" + cardinfo["Rules Text"] + "\n\n*" + separator.join(cardlore) + "*")
             else:
@@ -419,7 +424,12 @@ async def lookUpActionCard(ctx, *, arg):
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
 
-@bot.command(name='agenda',help='Returns agenda card information by name.')
+@lookUpActionCard.error
+async def actioncard_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('actioncard')
+
+@bot.command(name='agenda',brief='Returns agenda card information by name.',help='Searches agenda cards for the specified name or partial match (<arg>).\n\nExample usage:\n?agenda mutiny\n?agenda ixthian')
 async def lookUpAgenda(ctx, *, arg):
     cardinfo, match = searchAgenda(arg)
     if match:
@@ -435,7 +445,12 @@ async def lookUpAgenda(ctx, *, arg):
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
 
-@bot.command(name='exploration',help='Returns exploration card information by name.')
+@lookUpAgenda.error
+async def agenda_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('agenda')
+
+@bot.command(name='exploration',brief='Returns exploration card information by name.',help='Searches exploration cards for the specified name or partial match(<arg>).\n\nExample usage:\n?exploration freelancers\n?exploration fabricators')
 async def lookUpExplore(ctx, *, arg):
     cardinfo, match = searchExplore(arg)
     if match:
@@ -458,7 +473,12 @@ async def lookUpExplore(ctx, *, arg):
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
 
-@bot.command(name='leader',help='Returns leader information by name.')
+@lookUpExplore.error
+async def exploration_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('exploration')
+
+@bot.command(name='leader',brief='Returns leader information by name.',help='Searches leaders for the specified name or faction + type(<arg>).\n\nExample usage:\n?leader ta zern\n?leader nekro agent')
 async def lookUpLeader(ctx, *, arg):
     cardinfo, match = searchLeader(arg)
     if match:
@@ -475,7 +495,12 @@ async def lookUpLeader(ctx, *, arg):
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
 
-@bot.command(name='objective',help='Returns objective information by name.')
+@lookUpLeader.error
+async def leader_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('leader')
+
+@bot.command(name='objective',brief='Returns objective information by name.',help='Searches public and secret objectives for the specified name or partial match (<arg>).\n\nExample usage:\n?objective diversify research\n?objective monument')
 async def lookUpObjective(ctx, *, arg):
     cardinfo, match = searchObjective(arg)
     if match:
@@ -489,7 +514,12 @@ async def lookUpObjective(ctx, *, arg):
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
 
-@bot.command(name='planet',help='Returns planet information by name.')
+@lookUpObjective.error
+async def objective_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('objective')
+
+@bot.command(name='planet',brief='Returns planet information by name.',help='Searches planet cards for the specified name or partial match (<arg>).\n\nExample usage:\n?planet bereg\n?planet elysium')
 async def lookUpPlanet(ctx, *, arg):
     cardinfo, match = searchPlanet(arg)
     if match:
@@ -505,7 +535,12 @@ async def lookUpPlanet(ctx, *, arg):
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
 
-@bot.command(name='promissory',help='Returns promissory note information by name.')
+@lookUpPlanet.error
+async def planet_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('planet')
+
+@bot.command(name='promissory',brief='Returns promissory note information by name.',help='Searches generic and faction promissory notes for the specified name, partial match, or faction shorthand + "note" (<arg>).\n\nExample usage:\n?promissory alliance\n?promissory argent note')
 async def lookUpProm(ctx, *, arg):
     cardinfo, match = searchProm(arg)
     if match:
@@ -521,7 +556,12 @@ async def lookUpProm(ctx, *, arg):
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
 
-@bot.command(name='relic',help='Returns relic information by name.')
+@lookUpProm.error
+async def promissory_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('promissory')
+
+@bot.command(name='relic',brief='Returns relic information by name.',help='Searches relics for the specified name or partial match (<arg>).\n\nExample usage:\n?relic the obsidian\n?relic emphidia')
 async def lookUpRelic(ctx, *, arg):
     cardinfo, match = searchRelic(arg)
     if match:
@@ -537,7 +577,12 @@ async def lookUpRelic(ctx, *, arg):
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo)) 
 
-@bot.command(name='tech',help='Returns technology information by name.')
+@lookUpRelic.error
+async def relic_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('relic')
+
+@bot.command(name='tech',brief='Returns technology information by name.',help='Searches generic and faction technology cards for the specified name or partial match (<arg>).\n\nExample usage:\n?tech dreadnought ii\n?tech dread 2')
 async def lookUpTech(ctx, *, arg):
     cardinfo, match = searchTech(arg)
     if match:
@@ -558,8 +603,13 @@ async def lookUpTech(ctx, *, arg):
             await ctx.send(">>> No match found for " + arg + ".")
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
-            
-@bot.command(name='unit',help='Returns unit information by name.')
+
+@lookUpTech.error
+async def tech_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('tech')
+
+@bot.command(name='unit',brief='Returns unit information by name.',help='Searches generic and faction units for the specified name or partial match (<arg>).\n\nExample usage:\n?unit strike wing alpha\n?unit saturn engine')
 async def lookUpUnit(ctx, *, arg):
     cardinfo, match = searchUnit(arg)
     if match:
@@ -574,6 +624,11 @@ async def lookUpUnit(ctx, *, arg):
             await ctx.send(">>> No match found for " + arg + ".")
         else:
             await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo)) 
+
+@lookUpUnit.error
+async def unit_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send_help('unit')
 
 bot.run(token)
 random.seed(datetime.now())

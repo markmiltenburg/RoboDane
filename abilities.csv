@@ -1,6 +1,6 @@
 Name,Faction,Rules Text,Notes,Aliases
 Mitosis,Arborec,"Your space docks cannot produce infantry. At the start of the status phase, place 1 infantry from your reinforcements on any planet you control.",,
-Zeal,Argent Flight,"You always vote first during the agenda phase. When you cast at least 1 vote, cast 1 additional vote for each player in the game, including you.",,
+Zeal,Argent Flight,"You always vote first during the agenda phase. When you cast at least 1 vote, cast 1 additional vote for each player in the game, including you.","Other than the Argent player, all players vote in regular order (left of speaker, then clockwise).",
 Raid Formation,Argent Flight,"When 1 or more of your units use Anti-Fighter Barrage, for each hit produced in excess of your opponent's fighters, choose 1 of your opponent's ships that has Sustain Damage to become damaged.",,
 Munitions Reserves,Barony of Letnev,"At the start of each round of space combat, you may spend 2 trade goods; you may reroll any number of your dice during that combat round.",,
 Armada,Barony of Letnev,The maximum number of non-fighter ships you can have in each system is equal to 2 more than the number of tokens in your fleet pool.,,
