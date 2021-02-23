@@ -16,6 +16,7 @@ load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix='?')
 levDistMin = 2
+botColor = 0x2b006b
 
 def searchAbility(cardname):
     search_string = cardname.lower()
@@ -387,15 +388,16 @@ async def lookUpAbility(ctx, *, arg):
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
-        if cardinfo["Notes"] == "":
-            await ctx.send(">>> __**" + cardinfo["Name"] + "**__\n***" + cardinfo["Faction"] + " Faction Ability***\n" + separator.join(cardrules))
-        else:
-            await ctx.send(">>> __**" + cardinfo["Name"] + "**__\n***" + cardinfo["Faction"] + " Faction Ability***\n" + separator.join(cardrules) + "\n\n" + "Notes: " + cardinfo["Notes"])
+        embed = discord.Embed(title = cardinfo["Name"], description= cardinfo["Faction"] + " Faction Ability", color=botColor)
+        embed.add_field(name = "Ability Text", value = separator.join(cardrules), inline = False)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed)
 
 @lookUpAbility.error
 async def ability_error(ctx, error):
@@ -408,21 +410,18 @@ async def lookUpActionCard(ctx, *, arg):
     if match:
         cardlore = cardinfo["Flavour Text"].split("|")
         separator = "\n"
-        if cardinfo["Notes"] == "":
-            if cardinfo["Quantity"] == "1":
-                await ctx.send(">>> There is " + cardinfo["Quantity"] + " copy of " + cardinfo["Action Card Name"] + " printed in " + cardinfo["Source"] + ".\n__**" + cardinfo["Action Card Name"] + "**__\n**" + cardinfo["Timing"] + ":**\n" + cardinfo["Rules Text"] + "\n\n*" + separator.join(cardlore) + "*")
-            else:
-                await ctx.send(">>> There are " + cardinfo["Quantity"] + " copies of " + cardinfo["Action Card Name"] + " printed in " + cardinfo["Source"] + ".\n__**" + cardinfo["Action Card Name"] + "**__\n**" + cardinfo["Timing"] + ":**\n" + cardinfo["Rules Text"] + "\n\n*" + separator.join(cardlore) + "*")
-        else:
-            if cardinfo["Quantity"] == "1":
-                await ctx.send(">>> There is " + cardinfo["Quantity"] + " copy of " + cardinfo["Action Card Name"] + " printed in " + cardinfo["Source"] + ".\n__**" + cardinfo["Action Card Name"] + "**__\n**" + cardinfo["Timing"] + ":**\n" + cardinfo["Rules Text"] + "\n\n*" + separator.join(cardlore) + "*" + "\nNotes: " + cardinfo["Notes"])
-            else:
-                await ctx.send(">>> There are " + cardinfo["Quantity"] + " copies of " + cardinfo["Action Card Name"] + " printed in " + cardinfo["Source"] + ".\n__**" + cardinfo["Action Card Name"] + "**__\n**" + cardinfo["Timing"] + ":**\n" + cardinfo["Rules Text"] + "\n\n*" + separator.join(cardlore) + "*" + "\nNotes: " + cardinfo["Notes"])
+        embed=discord.Embed(title = cardinfo["Action Card Name"], description= "**" + cardinfo["Timing"] + ":**\n" + cardinfo["Rules Text"], color=botColor)
+        embed.add_field(name = "*Flavor Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
+        embed.add_field(name = "Quantity", value = cardinfo["Quantity"], inline = True)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed)
 
 @lookUpActionCard.error
 async def actioncard_error(ctx, error):
@@ -435,15 +434,16 @@ async def lookUpAgenda(ctx, *, arg):
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
-        if cardinfo["Notes"] == "":
-            await ctx.send(">>> __**" + cardinfo["Name"] + "**__\n***" + cardinfo["Agenda Type"] + "***\n" + separator.join(cardrules) + "\n\n" + "Source: " + cardinfo["Source"])
-        else:
-            await ctx.send(">>> __**" + cardinfo["Name"] + "**__\n***" + cardinfo["Agenda Type"] + "***\n" + separator.join(cardrules) + "\n\n" + "Notes: " + cardinfo["Notes"] + "\n\n" + "Source: " + cardinfo["Source"])
+        embed=discord.Embed(title = cardinfo["Name"], description= "**" + cardinfo["Agenda Type"] + ":**\n\n" + separator.join(cardrules), color=botColor)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed)
 
 @lookUpAgenda.error
 async def agenda_error(ctx, error):
@@ -457,21 +457,18 @@ async def lookUpExplore(ctx, *, arg):
         cardrules = cardinfo["Rules Text"].split("|")
         cardlore = cardinfo["Flavour Text"].split("|")
         separator = "\n"
-        if cardinfo["Flavour Text"] == "":
-            if cardinfo["Quantity"] == "1":
-                await ctx.send(">>> There is " + cardinfo["Quantity"] + " copy of " + cardinfo["Name"] + ".\n__**" + cardinfo["Name"] + "**__\n***" + cardinfo["Type"] + " Exploration Card***\n" + separator.join(cardrules))
-            else:
-                await ctx.send(">>> There are " + cardinfo["Quantity"] + " copies of " + cardinfo["Name"] + ".\n__**" + cardinfo["Name"] + "**__\n***" + cardinfo["Type"] + " Exploration Card***\n" + separator.join(cardrules))
-        else:
-            if cardinfo["Quantity"] == "1":
-                await ctx.send(">>> There is " + cardinfo["Quantity"] + " copy of " + cardinfo["Name"] + ".\n__**" + cardinfo["Name"] + "**__\n***" + cardinfo["Type"] + " Exploration Card***\n" + separator.join(cardrules) + "\n\n*" + separator.join(cardlore) + "*")
-            else:
-                await ctx.send(">>> There are " + cardinfo["Quantity"] + " copies of " + cardinfo["Name"] + ".\n__**" + cardinfo["Name"] + "**__\n***" + cardinfo["Type"] + " Exploration Card***\n" + separator.join(cardrules) + "\n\n*" + separator.join(cardlore) + "*")
+        embed=discord.Embed(title = cardinfo["Name"], description= "*" + cardinfo["Type"] + " Exploration Card*\n\n" + separator.join(cardrules), color=botColor)
+        if cardinfo["Flavour Text"] != "":
+            embed.add_field(name = "*Flavor Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
+        embed.add_field(name = "Quantity", value = cardinfo["Quantity"], inline = True)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed)
 
 @lookUpExplore.error
 async def exploration_error(ctx, error):
@@ -485,15 +482,16 @@ async def lookUpLeader(ctx, *, arg):
         cardrules = cardinfo["Text"].split("|")
         cardlore = cardinfo["Flavor Text"].split("|")
         separator = "\n"
-        if cardinfo["Notes"] == "":
-            await ctx.send(">>> __**" + cardinfo["Name"] + "**__\n***" + cardinfo["Subtitle"] + "***\n" + cardinfo["Faction"] + " " + cardinfo["Type"] + "\n" + separator.join(cardrules) + "\n\n*" + separator.join(cardlore) + "*")
-        else:
-            await ctx.send(">>> __**" + cardinfo["Name"] + "**__\n***" + cardinfo["Subtitle"] + "***\n" + cardinfo["Faction"] + " " + cardinfo["Type"] + "\n" + separator.join(cardrules) + "\n\n*" + separator.join(cardlore) + "*\n\n" + cardinfo["Notes"])
+        embed=discord.Embed(title = "__**" + cardinfo["Name"] + "**__", description= "***" + cardinfo["Subtitle"] + "***\n" + cardinfo["Faction"] + " " + cardinfo["Type"] + "\n" + separator.join(cardrules), color=botColor)
+        embed.add_field(name = "*Flavor Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed)
 
 @lookUpLeader.error
 async def leader_error(ctx, error):
@@ -504,15 +502,15 @@ async def leader_error(ctx, error):
 async def lookUpObjective(ctx, *, arg):
     cardinfo, match = searchObjective(arg)
     if match:
-        if cardinfo["Notes"] == "":
-            await ctx.send(">>> __**" + cardinfo["Name"] + "**__\n" + "*" + cardinfo["Type"] + " Objective - " + cardinfo["Phase"] + " Phase*\n" + cardinfo["Text"])
-        else:
-            await ctx.send(">>> __**" + cardinfo["Name"] + "**__\n" + "*" + cardinfo["Type"] + " Objective - " + cardinfo["Phase"] + " Phase*\n" + cardinfo["Text"] + "\n\n" + "Notes: " + cardinfo["Notes"])
+        embed=discord.Embed(title = cardinfo["Name"], description= "*" + cardinfo["Type"] + " Objective - " + cardinfo["Phase"] + " Phase*\n\n" + cardinfo["Text"], color=botColor)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed)
 
 @lookUpObjective.error
 async def objective_error(ctx, error):
@@ -523,17 +521,20 @@ async def objective_error(ctx, error):
 async def lookUpPlanet(ctx, *, arg):
     cardinfo, match = searchPlanet(arg)
     if match:
-        if cardinfo["Tech Skip"] != "":
-            await ctx.send(">>> **" + cardinfo["Planet Name"] + "**\n" + cardinfo["Planet Trait"] + " - " + cardinfo["Resources"] + "/" + cardinfo["Influence"] + "\n" + cardinfo["Tech Skip"] + "\n\n*" + cardinfo["Flavour Text"] + "*")
-        elif cardinfo["Legendary Ability"] != "":
-            await ctx.send(">>> **" + cardinfo["Planet Name"] + "**\n" + cardinfo["Planet Trait"] + " - " + cardinfo["Resources"] + "/" + cardinfo["Influence"] + "\n\n*" + cardinfo["Flavour Text"] + "*" + "\n\n" + cardinfo["Legendary Ability"].split("|"))
-        else:
-            await ctx.send(">>> **" + cardinfo["Planet Name"] + "**\n" + cardinfo["Planet Trait"] + " - " + cardinfo["Resources"] + "/" + cardinfo["Influence"] + "\n\n*" + cardinfo["Flavour Text"] + "*")
+        techSkip = "\n" + cardinfo["Tech Skip"] + " Technology Specialty" if cardinfo["Tech Skip"] else ""
+        embed=discord.Embed(title = cardinfo["Planet Name"], description= cardinfo["Planet Trait"] + " - " + cardinfo["Resources"] + "/" + cardinfo["Influence"] + techSkip, color=botColor)
+        embed.add_field(name = "*Flavor Text*", value = "*" + cardinfo["Flavour Text"] + "*", inline = False)
+        if cardinfo["Legendary Ability"] != "":
+            legend = cardinfo["Legendary Ability"].split("|")
+            embed.add_field(name = "Legendary Ability", value = "\n".join(legend), inline = False)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed)
 
 @lookUpPlanet.error
 async def planet_error(ctx, error):
@@ -546,15 +547,15 @@ async def lookUpProm(ctx, *, arg):
     if match:
         separator = "\n"
         rulesText = cardinfo["Rules Text"].split("|")
-        if cardinfo["Notes"] == "":
-            await ctx.send(">>> __**" + cardinfo["Name"] + "**__\n*" + cardinfo["Type"] + " Promissory Note*\n" + separator.join(rulesText))
-        else:
-            await ctx.send(">>> __**" + cardinfo["Name"] + "**__\n*" + cardinfo["Type"] + " Promissory Note*\n" + separator.join(rulesText) + "\n\n*Notes: " + cardinfo["Notes"] + "*")
+        embed=discord.Embed(title = cardinfo["Name"], description = "*" + cardinfo["Type"] + " Promissory Note*\n\n" + separator.join(rulesText), color=botColor)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed)
 
 @lookUpProm.error
 async def promissory_error(ctx, error):
@@ -567,15 +568,17 @@ async def lookUpRelic(ctx, *, arg):
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
-        if cardinfo["Notes"] == "":
-            await ctx.send(">>> **" + cardinfo["Name"] + "**\n" + separator.join(cardrules) + "\n\n*" + cardinfo["Flavor"] + "*")
-        else:
-            await ctx.send(">>> **" + cardinfo["Name"] + "**\n" + separator.join(cardrules) + "\n\n*" + cardinfo["Flavor"] + "*\n\n" +  cardinfo["Notes"])
+        embed=discord.Embed(title = cardinfo["Name"], description = separator.join(cardrules), color=botColor)
+        embed.add_field(name = "*Flavor Text*", value = "*" + cardinfo["Flavor"] + "*", inline = False)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo)) 
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed) 
 
 @lookUpRelic.error
 async def relic_error(ctx, error):
@@ -588,21 +591,16 @@ async def lookUpTech(ctx, *, arg):
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
-        if cardinfo["Notes"] == "":
-            if cardinfo["Prerequisites"] == "":
-                await ctx.send(">>> __**" + cardinfo["Technology Name"] + "**__\n" + "*" + cardinfo["Type"] + " Technology*\n" + separator.join(cardrules))
-            else:
-                await ctx.send(">>> __**" + cardinfo["Technology Name"] + "**__\n" + "*" + cardinfo["Type"] + " Technology, Requires - " + cardinfo["Prerequisites"] + "*\n" + separator.join(cardrules))
-        else:
-            if cardinfo["Prerequisites"] == "":
-                await ctx.send(">>> __**" + cardinfo["Technology Name"] + "**__\n" + "*" + cardinfo["Type"] + " Technology*\n" + separator.join(cardrules) + "\n\n" + "Notes: " + cardinfo["Notes"])
-            else:
-                await ctx.send(">>> __**" + cardinfo["Technology Name"] + "**__\n" + "*" + cardinfo["Type"] + " Technology, Requires - " + cardinfo["Prerequisites"] + "*\n" + separator.join(cardrules) + "\n\n" + "Notes: " + cardinfo["Notes"])
+        prereqs = ", Requires - " + cardinfo["Prerequisites"] if cardinfo["Prerequisites"] else ""
+        embed=discord.Embed(title = cardinfo["Technology Name"], description = "*" + cardinfo["Type"] + " Technology" + prereqs + "*\n\n" + separator.join(cardrules), color=botColor)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed) 
 
 @lookUpTech.error
 async def tech_error(ctx, error):
@@ -615,15 +613,16 @@ async def lookUpUnit(ctx, *, arg):
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
-        if cardinfo["Upgrade Requirements"] == "":
-            await ctx.send(">>> **" + cardinfo["Unit Name"] + "**\n*" + cardinfo["Type"] + " - " + cardinfo["Classification"] + "*\n" + separator.join(cardrules))
-        else:
-            await ctx.send(">>> **" + cardinfo["Unit Name"] + "**\n*" + cardinfo["Type"] + " - " + cardinfo["Classification"] + "*\n" + separator.join(cardrules) + "\nUpgrade requires " + cardinfo["Upgrade Requirements"])
+        prereqs = "\nUpgrade requires " + cardinfo["Upgrade Requirements"] if cardinfo["Upgrade Requirements"] else ""
+        embed=discord.Embed(title = cardinfo["Unit Name"], description = "*" + cardinfo["Type"] + " - " + cardinfo["Classification"] + "*\n\n" + separator.join(cardrules) + prereqs, color=botColor)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            await ctx.send(">>> No match found for " + arg + ".")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            await ctx.send(">>> No match found for " + arg + ".\nSuggested searchs: " + ", ".join(cardinfo)) 
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+    await ctx.send(embed=embed)
 
 @lookUpUnit.error
 async def unit_error(ctx, error):
