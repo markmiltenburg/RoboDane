@@ -12,11 +12,17 @@ import os
 import re
 from Levenshtein import distance
 
-load_dotenv()
-token = os.getenv('DISCORD_TOKEN')
-bot = commands.Bot(command_prefix='?')
 levDistMin = 2
 botColor = 0x2b006b
+load_dotenv()
+token = os.getenv('DISCORD_TOKEN')
+
+# Change the no_category default string
+help_command = commands.DefaultHelpCommand(
+    no_category = 'Commands'
+)
+
+bot = commands.Bot(command_prefix='?', help_command = help_command)
 
 def searchAbility(cardname):
     search_string = cardname.lower()
@@ -428,6 +434,10 @@ async def actioncard_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('actioncard')
 
+@bot.command(pass_context=True,brief='Returns action card information by name.',help='Searches action cards for the specified name or partial match (<arg>).\n\nExample usage:\n?ac sabotage\n?ac rise')
+async def ac(ctx):
+    await lookUpActionCard.invoke(ctx)
+
 @bot.command(name='agenda',brief='Returns agenda card information by name.',help='Searches agenda cards for the specified name or partial match (<arg>).\n\nExample usage:\n?agenda mutiny\n?agenda ixthian')
 async def lookUpAgenda(ctx, *, arg):
     cardinfo, match = searchAgenda(arg)
@@ -475,6 +485,10 @@ async def exploration_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('exploration')
 
+@bot.command(pass_context=True,brief='Returns exploration card information by name.',help='Searches exploration cards for the specified name or partial match(<arg>).\n\nExample usage:\n?exp freelancers\n?exp fabricators')
+async def exp(ctx):
+    await lookUpExplore.invoke(ctx)
+
 @bot.command(name='leader',brief='Returns leader information by name.',help='Searches leaders for the specified name or faction + type(<arg>).\n\nExample usage:\n?leader ta zern\n?leader nekro agent')
 async def lookUpLeader(ctx, *, arg):
     cardinfo, match = searchLeader(arg)
@@ -516,6 +530,10 @@ async def lookUpObjective(ctx, *, arg):
 async def objective_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('objective')
+
+@bot.command(pass_context=True,brief='Returns objective information by name.',help='Searches public and secret objectives for the specified name or partial match (<arg>).\n\nExample usage:\n?obj diversify research\n?obj monument')
+async def obj(ctx):
+    await lookUpObjective.invoke(ctx)
 
 @bot.command(name='planet',brief='Returns planet information by name.',help='Searches planet cards for the specified name or partial match (<arg>).\n\nExample usage:\n?planet bereg\n?planet elysium')
 async def lookUpPlanet(ctx, *, arg):
@@ -561,6 +579,10 @@ async def lookUpProm(ctx, *, arg):
 async def promissory_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('promissory')
+
+@bot.command(pass_context=True,brief='Returns promissory note information by name.',help='Searches generic and faction promissory notes for the specified name, partial match, or faction shorthand + "note" (<arg>).\n\nExample usage:\n?prom alliance\n?prom argent note')
+async def prom(ctx):
+    await lookUpProm.invoke(ctx)
 
 @bot.command(name='relic',brief='Returns relic information by name.',help='Searches relics for the specified name or partial match (<arg>).\n\nExample usage:\n?relic the obsidian\n?relic emphidia')
 async def lookUpRelic(ctx, *, arg):
