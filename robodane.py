@@ -265,7 +265,10 @@ def searchProm(cardname):
             for index in range(0,len(row[c1])-len(search_string)+1):
                 genAlias.append(row[c1].lower()[index:index+len(search_string)])
             if row[c1].lower() == search_string or search_string in aliasList:
-                return row, True
+            	if search_string in ['empyrean prom', 'empyrean promissory']:
+            	    suggestions.append(row[c1])
+            	else:
+                    return row, True
             elif search_string in genAlias: 
                 if savedRow == {}:
                     savedRow =  row.copy()
