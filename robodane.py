@@ -34,9 +34,7 @@ def searchAbility(cardname):
         c1, c2, c3, c4, c5 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c5].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias: 
@@ -66,9 +64,7 @@ def searchAC(cardname):
         c1, c2, c3, c4, c5, c6, c7, c8 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c8].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias: 
@@ -98,9 +94,7 @@ def searchAgenda(cardname):
         c1, c2, c3, c4, c5, c6 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c6].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias: 
@@ -130,9 +124,7 @@ def searchExplore(cardname):
         c1, c2, c3, c4, c5, c6, c7, c8 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c8].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias: 
@@ -162,9 +154,7 @@ def searchLeader(cardname):
         c1, c2, c3, c4, c5, c6, c7, c8 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c8].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
             	if search_string == 'nomad agent':
             	    suggestions.append(row[c1])
@@ -197,9 +187,7 @@ def searchObjective(cardname):
         c1, c2, c3, c4, c5, c6, c7 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c7].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias: 
@@ -229,9 +217,7 @@ def searchPlanet(cardname):
         c1, c2, c3, c4, c5, c6, c7, c8, c9, c10 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c10].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias: 
@@ -261,9 +247,7 @@ def searchProm(cardname):
         c1, c2, c3, c4, c5, c6 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c6].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
             	if search_string in ['empyrean prom', 'empyrean promissory']:
             	    suggestions.append(row[c1])
@@ -296,9 +280,7 @@ def searchRelic(cardname):
         c1, c2, c3, c4, c5, c6 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c6].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias: 
@@ -328,9 +310,7 @@ def searchTech(cardname):
         c1, c2, c3, c4, c5, c6, c7 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c7].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias: 
@@ -360,9 +340,7 @@ def searchUnit(unitname):
         c1, c2, c3, c4, c5, c6, c7 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c7].split(", "))
-            genAlias = []
-            for index in range(0,len(row[c1])-len(search_string)+1):
-                genAlias.append(row[c1].lower()[index:index+len(search_string)])
+            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias: 
