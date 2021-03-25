@@ -156,9 +156,9 @@ def searchLeader(cardname):
             aliasList = list(row[c8].split(", "))
             genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
             if row[c1].lower() == search_string or search_string in aliasList:
-            	if search_string == 'nomad agent':
-            	    suggestions.append(row[c1])
-            	else:
+                if search_string == 'nomad agent':
+                    suggestions.append(row[c1])
+                else:
                     return row, True
             elif search_string in genAlias: 
                 if savedRow == {}:
@@ -387,12 +387,15 @@ async def lookUpAbility(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed)
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpAbility.error
 async def ability_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('ability')
+        await ctx.message.delete(delay = 60)
 
 @bot.command(name='actioncard',brief='Returns action card information by name.',help='Searches action cards for the specified name or partial match (<arg>).\n\nExample usage:\n?actioncard sabotage\n?actioncard rise')
 async def lookUpActionCard(ctx, *, arg):
@@ -411,12 +414,15 @@ async def lookUpActionCard(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed)
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpActionCard.error
 async def actioncard_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('actioncard')
+        await ctx.message.delete(delay = 60)
 
 @bot.command(pass_context=True,brief='Returns action card information by name.',help='Searches action cards for the specified name or partial match (<arg>).\n\nExample usage:\n?ac sabotage\n?ac rise')
 async def ac(ctx):
@@ -437,12 +443,15 @@ async def lookUpAgenda(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed)
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpAgenda.error
 async def agenda_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('agenda')
+        await ctx.message.delete(delay = 60)
 
 @bot.command(name='exploration',brief='Returns exploration card information by name.',help='Searches exploration cards for the specified name or partial match(<arg>).\n\nExample usage:\n?exploration freelancers\n?exploration fabricators')
 async def lookUpExplore(ctx, *, arg):
@@ -462,16 +471,20 @@ async def lookUpExplore(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed)
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpExplore.error
 async def exploration_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('exploration')
+        await ctx.message.delete(delay = 60)
 
 @bot.command(pass_context=True,brief='Returns exploration card information by name.',help='Searches exploration cards for the specified name or partial match(<arg>).\n\nExample usage:\n?exp freelancers\n?exp fabricators')
 async def exp(ctx):
     await lookUpExplore.invoke(ctx)
+    await ctx.message.delete(delay = 60)
 
 @bot.command(name='leader',brief='Returns leader information by name.',help='Searches leaders for the specified name or faction + type(<arg>).\n\nExample usage:\n?leader ta zern\n?leader nekro agent')
 async def lookUpLeader(ctx, *, arg):
@@ -489,12 +502,15 @@ async def lookUpLeader(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed)
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpLeader.error
 async def leader_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('leader')
+        await ctx.message.delete(delay = 60)
 
 @bot.command(name='objective',brief='Returns objective information by name.',help='Searches public and secret objectives for the specified name or partial match (<arg>).\n\nExample usage:\n?objective diversify research\n?objective monument')
 async def lookUpObjective(ctx, *, arg):
@@ -508,12 +524,15 @@ async def lookUpObjective(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed)
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpObjective.error
 async def objective_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('objective')
+        await ctx.message.delete(delay = 60)
 
 @bot.command(pass_context=True,brief='Returns objective information by name.',help='Searches public and secret objectives for the specified name or partial match (<arg>).\n\nExample usage:\n?obj diversify research\n?obj monument')
 async def obj(ctx):
@@ -536,12 +555,15 @@ async def lookUpPlanet(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed)
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpPlanet.error
 async def planet_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('planet')
+        await ctx.message.delete(delay = 60)
 
 @bot.command(name='promissory',brief='Returns promissory note information by name.',help='Searches generic and faction promissory notes for the specified name, partial match, or faction shorthand + "note" (<arg>).\n\nExample usage:\n?promissory alliance\n?promissory argent note')
 async def lookUpProm(ctx, *, arg):
@@ -557,12 +579,15 @@ async def lookUpProm(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed)
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpProm.error
 async def promissory_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('promissory')
+        await ctx.message.delete(delay = 60)
 
 @bot.command(pass_context=True,brief='Returns promissory note information by name.',help='Searches generic and faction promissory notes for the specified name, partial match, or faction shorthand + "note" (<arg>).\n\nExample usage:\n?prom alliance\n?prom argent note')
 async def prom(ctx):
@@ -584,12 +609,15 @@ async def lookUpRelic(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed) 
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpRelic.error
 async def relic_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('relic')
+        await ctx.message.delete(delay = 60)
 
 @bot.command(name='tech',brief='Returns technology information by name.',help='Searches generic and faction technology cards for the specified name or partial match (<arg>).\n\nExample usage:\n?tech dreadnought ii\n?tech dread 2')
 async def lookUpTech(ctx, *, arg):
@@ -606,12 +634,15 @@ async def lookUpTech(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed) 
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpTech.error
 async def tech_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('tech')
+        await ctx.message.delete(delay = 60)
 
 @bot.command(name='unit',brief='Returns unit information by name.',help='Searches generic and faction units for the specified name or partial match (<arg>).\n\nExample usage:\n?unit strike wing alpha\n?unit saturn engine')
 async def lookUpUnit(ctx, *, arg):
@@ -628,12 +659,15 @@ async def lookUpUnit(ctx, *, arg):
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
-    await ctx.send(embed=embed)
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
 
 @lookUpUnit.error
 async def unit_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send_help('unit')
+        await ctx.message.delete(delay = 60)
 
 bot.run(token)
 random.seed(datetime.now())
