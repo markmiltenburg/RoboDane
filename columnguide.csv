@@ -1,0 +1,12 @@
+﻿Abilities,Name,Type,,,,,,,Rules Text,,Notes,Aliases
+Action Cards,Name,Type,,,,,Quantity,Source,Rules Text,Flavour Text,Notes,Aliases
+Agendas,Name,Type,,,,,,Source,Rules Text,,Notes,Aliases
+Exploration,Name,Type,,,,,Quantity,Source,Rules Text,Flavour Text,Notes,Aliases
+Leaders,Name,Type,Classification,,,Subtitle,,,Rules Text,Flavour Text,Notes,Aliases
+Objectives,Name,Type,Classification,,,,,Source,Rules Text,,Notes,Aliases
+Planets,Name,Type,Classification,Res_Inf,,,,Source,Rules Text,Flavour Text,Notes,Aliases
+Promissories,Name,Type,,,,,,Source,Rules Text,,Notes,Aliases
+Relics,Name,,,,,,,Source,Rules Text,Flavour Text,Notes,Aliases
+Techs,Name,Type,,,Prerequisites,,,Source,Rules Text,,Notes,Aliases
+Units,Name,Type,Classification,,Prerequisites,,,,Rules Text,,Notes,Aliases
+Generic,Name,Type,Classification,Res_Inf,Prerequisites,Subtitle,Quantity,Source,Rules Text,Flavour Text,Notes,Aliases

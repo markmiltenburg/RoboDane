@@ -37,7 +37,7 @@ def searchAbility(cardname):
             genAlias = [orig_name_lower[i: i+len(search_string)] for i in range(len(orig_name_lower)-len(search_string)+1)]
             if orig_name_lower == search_string or search_string in aliasList:
                 return row, True
-            elif search_string in genAlias: 
+            elif search_string in genAlias:
                 if savedRow == {}:
                     savedRow =  row.copy()
                     suggestions.append(row[c1])
@@ -378,7 +378,7 @@ async def lookUpAbility(ctx, *, arg):
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
-        embed = discord.Embed(title = cardinfo["Name"], description= cardinfo["Faction"] + " Faction Ability", color=botColor)
+        embed = discord.Embed(title = cardinfo["Name"], description= cardinfo["Type"] + " Faction Ability", color=botColor)
         embed.add_field(name = "Ability Text", value = separator.join(cardrules), inline = False)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
@@ -403,8 +403,8 @@ async def lookUpActionCard(ctx, *, arg):
     if match:
         cardlore = cardinfo["Flavour Text"].split("|")
         separator = "\n"
-        embed=discord.Embed(title = cardinfo["Action Card Name"], description= "**" + cardinfo["Timing"] + ":**\n" + cardinfo["Rules Text"], color=botColor)
-        embed.add_field(name = "*Flavor Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
+        embed=discord.Embed(title = cardinfo["Name"], description= "**" + cardinfo["Type"] + ":**\n" + cardinfo["Rules Text"], color=botColor)
+        embed.add_field(name = "*Flavour Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
         embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         embed.add_field(name = "Quantity", value = cardinfo["Quantity"], inline = True)
         if cardinfo["Notes"] != "":
@@ -434,7 +434,7 @@ async def lookUpAgenda(ctx, *, arg):
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
-        embed=discord.Embed(title = cardinfo["Name"], description= "**" + cardinfo["Agenda Type"] + ":**\n\n" + separator.join(cardrules), color=botColor)
+        embed=discord.Embed(title = cardinfo["Name"], description= "**" + cardinfo["Type"] + ":**\n\n" + separator.join(cardrules), color=botColor)
         embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
@@ -462,7 +462,7 @@ async def lookUpExplore(ctx, *, arg):
         separator = "\n"
         embed=discord.Embed(title = cardinfo["Name"], description= "*" + cardinfo["Type"] + " Exploration Card*\n\n" + separator.join(cardrules), color=botColor)
         if cardinfo["Flavour Text"] != "":
-            embed.add_field(name = "*Flavor Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
+            embed.add_field(name = "*Flavour Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
         embed.add_field(name = "Quantity", value = cardinfo["Quantity"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
@@ -490,11 +490,11 @@ async def exp(ctx):
 async def lookUpLeader(ctx, *, arg):
     cardinfo, match = searchLeader(arg)
     if match:
-        cardrules = cardinfo["Text"].split("|")
-        cardlore = cardinfo["Flavor Text"].split("|")
+        cardrules = cardinfo["Rules Text"].split("|")
+        cardlore = cardinfo["Flavour Text"].split("|")
         separator = "\n"
-        embed=discord.Embed(title = "__**" + cardinfo["Name"] + "**__", description= "***" + cardinfo["Subtitle"] + "***\n" + cardinfo["Faction"] + " " + cardinfo["Type"] + "\n" + separator.join(cardrules), color=botColor)
-        embed.add_field(name = "*Flavor Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
+        embed=discord.Embed(title = "__**" + cardinfo["Name"] + "**__", description= "***" + cardinfo["Type"] + "***\n" + cardinfo["Classification"] + " " + cardinfo["Type"] + "\n" + separator.join(cardrules), color=botColor)
+        embed.add_field(name = "*Flavour Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
@@ -516,7 +516,7 @@ async def leader_error(ctx, error):
 async def lookUpObjective(ctx, *, arg):
     cardinfo, match = searchObjective(arg)
     if match:
-        embed=discord.Embed(title = cardinfo["Name"], description= "*" + cardinfo["Type"] + " Objective - " + cardinfo["Phase"] + " Phase*\n\n" + cardinfo["Text"], color=botColor)
+        embed=discord.Embed(title = cardinfo["Name"], description= "*" + cardinfo["Type"] + " Objective - " + cardinfo["Classification"] + " Phase*\n\n" + cardinfo["Rules Text"], color=botColor)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
@@ -542,11 +542,11 @@ async def obj(ctx):
 async def lookUpPlanet(ctx, *, arg):
     cardinfo, match = searchPlanet(arg)
     if match:
-        techSkip = "\n" + cardinfo["Tech Skip"] + " Technology Specialty" if cardinfo["Tech Skip"] else ""
-        embed=discord.Embed(title = cardinfo["Planet Name"], description= cardinfo["Planet Trait"] + " - " + cardinfo["Resources"] + "/" + cardinfo["Influence"] + techSkip, color=botColor)
-        embed.add_field(name = "*Flavor Text*", value = "*" + cardinfo["Flavour Text"] + "*", inline = False)
-        if cardinfo["Legendary Ability"] != "":
-            legend = cardinfo["Legendary Ability"].split("|")
+        techSkip = "\n" + cardinfo["Classification"] + " Technology Specialty" if cardinfo["Classification"] else ""
+        embed=discord.Embed(title = cardinfo["Name"], description= cardinfo["Type"] + " - " + cardinfo["Res_Inf"] + techSkip, color=botColor)
+        embed.add_field(name = "*Flavour Text*", value = "*" + cardinfo["Flavour Text"] + "*", inline = False)
+        if cardinfo["Rules Text"] != "":
+            legend = cardinfo["Rules Text"].split("|")
             embed.add_field(name = "Legendary Ability", value = "\n".join(legend), inline = False)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
@@ -600,7 +600,7 @@ async def lookUpRelic(ctx, *, arg):
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
         embed=discord.Embed(title = cardinfo["Name"], description = separator.join(cardrules), color=botColor)
-        embed.add_field(name = "*Flavor Text*", value = "*" + cardinfo["Flavor"] + "*", inline = False)
+        embed.add_field(name = "*Flavour Text*", value = "*" + cardinfo["Flavour Text"] + "*", inline = False)
         embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
@@ -626,7 +626,7 @@ async def lookUpTech(ctx, *, arg):
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
         prereqs = ", Requires - " + cardinfo["Prerequisites"] if cardinfo["Prerequisites"] else ""
-        embed=discord.Embed(title = cardinfo["Technology Name"], description = "*" + cardinfo["Type"] + " Technology" + prereqs + "*\n\n" + separator.join(cardrules), color=botColor)
+        embed=discord.Embed(title = cardinfo["Name"], description = "*" + cardinfo["Type"] + " Technology" + prereqs + "*\n\n" + separator.join(cardrules), color=botColor)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
@@ -650,8 +650,8 @@ async def lookUpUnit(ctx, *, arg):
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
-        prereqs = "\nUpgrade requires " + cardinfo["Upgrade Requirements"] if cardinfo["Upgrade Requirements"] else ""
-        embed=discord.Embed(title = cardinfo["Unit Name"], description = "*" + cardinfo["Type"] + " - " + cardinfo["Classification"] + "*\n\n" + separator.join(cardrules) + prereqs, color=botColor)
+        prereqs = "\nUpgrade requires " + cardinfo["Prerequisites"] if cardinfo["Prerequisites"] else ""
+        embed=discord.Embed(title = cardinfo["Name"], description = "*" + cardinfo["Type"] + " - " + cardinfo["Classification"] + "*\n\n" + separator.join(cardrules) + prereqs, color=botColor)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
