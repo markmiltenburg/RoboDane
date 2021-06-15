@@ -23,16 +23,16 @@ help_command = commands.DefaultHelpCommand(
 
 bot = commands.Bot(command_prefix='?', help_command = help_command)
 
-def searchAbility(cardname):
+def search(cardname, filename):
     search_string = cardname.lower()
     suggestions = []
     savedRow = {}
     matchFound = False
-    with open('abilities.csv', 'r') as f:
+    with open(filename, 'r') as f:
         reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5 = reader.fieldnames
+        c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12 = reader.fieldnames
         for row in reader:
-            aliasList = list(row[c5].split(", "))
+            aliasList = list(row[c12].split(", "))
             orig_name_lower = row[c1].lower()
             genAlias = [orig_name_lower[i: i+len(search_string)] for i in range(len(orig_name_lower)-len(search_string)+1)]
             if orig_name_lower == search_string or search_string in aliasList:
@@ -54,312 +54,6 @@ def searchAbility(cardname):
     else:
         return suggestions, False
 
-def searchAC(cardname):
-    search_string = cardname.lower()
-    suggestions = []
-    savedRow = {}
-    matchFound = False
-    with open('actioncards.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5, c6, c7, c8 = reader.fieldnames
-        for row in reader:
-            aliasList = list(row[c8].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
-                return row, True
-            elif search_string in genAlias: 
-                if savedRow == {}:
-                    savedRow =  row.copy()
-                    suggestions.append(row[c1])
-                    matchFound = True
-                else:
-                    suggestions.append(row[c1])
-                    matchFound = False
-            else:
-                levDist = distance(search_string,row[c1].lower())
-                if levDist <= levDistMin:
-                    suggestions.append(row[c1])
-    if matchFound == True:
-        return savedRow, True
-    else:
-        return suggestions, False
-
-def searchAgenda(cardname):
-    search_string = cardname.lower()
-    suggestions = []
-    savedRow = {}
-    matchFound = False
-    with open('agendas.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5, c6 = reader.fieldnames
-        for row in reader:
-            aliasList = list(row[c6].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
-                return row, True
-            elif search_string in genAlias: 
-                if savedRow == {}:
-                    savedRow =  row.copy()
-                    suggestions.append(row[c1])
-                    matchFound = True
-                else:
-                    suggestions.append(row[c1])
-                    matchFound = False
-            else:
-                levDist = distance(search_string,row[c1].lower())
-                if levDist <= levDistMin:
-                    suggestions.append(row[c1])
-    if matchFound == True:
-        return savedRow, True
-    else:
-        return suggestions, False
-
-def searchExplore(cardname):
-    search_string = cardname.lower()
-    suggestions = []
-    savedRow = {}
-    matchFound = False
-    with open('exploration.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5, c6, c7, c8 = reader.fieldnames
-        for row in reader:
-            aliasList = list(row[c8].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
-                return row, True
-            elif search_string in genAlias: 
-                if savedRow == {}:
-                    savedRow =  row.copy()
-                    suggestions.append(row[c1])
-                    matchFound = True
-                else:
-                    suggestions.append(row[c1])
-                    matchFound = False
-            else:
-                levDist = distance(search_string,row[c1].lower())
-                if levDist <= levDistMin:
-                    suggestions.append(row[c1])
-    if matchFound == True:
-        return savedRow, True
-    else:
-        return suggestions, False
-
-def searchLeader(cardname):
-    search_string = cardname.lower()
-    suggestions = []
-    savedRow = {}
-    matchFound = False
-    with open('leaders.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5, c6, c7, c8 = reader.fieldnames
-        for row in reader:
-            aliasList = list(row[c8].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
-                if search_string == 'nomad agent':
-                    suggestions.append(row[c1])
-                else:
-                    return row, True
-            elif search_string in genAlias: 
-                if savedRow == {}:
-                    savedRow =  row.copy()
-                    suggestions.append(row[c1])
-                    matchFound = True
-                else:
-                    suggestions.append(row[c1])
-                    matchFound = False
-            else:
-                levDist = distance(search_string,row[c1].lower())
-                if levDist <= levDistMin:
-                    suggestions.append(row[c1])
-    if matchFound == True:
-        return savedRow, True
-    else:
-        return suggestions, False
-
-def searchObjective(cardname):
-    search_string = cardname.lower()
-    suggestions = []
-    savedRow = {}
-    matchFound = False
-    with open('objectives.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5, c6, c7 = reader.fieldnames
-        for row in reader:
-            aliasList = list(row[c7].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
-                return row, True
-            elif search_string in genAlias: 
-                if savedRow == {}:
-                    savedRow =  row.copy()
-                    suggestions.append(row[c1])
-                    matchFound = True
-                else:
-                    suggestions.append(row[c1])
-                    matchFound = False
-            else:
-                levDist = distance(search_string,row[c1].lower())
-                if levDist <= levDistMin:
-                    suggestions.append(row[c1])
-    if matchFound == True:
-        return savedRow, True
-    else:
-        return suggestions, False
-
-def searchPlanet(cardname):
-    search_string = cardname.lower()
-    suggestions = []
-    savedRow = {}
-    matchFound = False
-    with open('planets.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5, c6, c7, c8, c9, c10 = reader.fieldnames
-        for row in reader:
-            aliasList = list(row[c10].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
-                return row, True
-            elif search_string in genAlias: 
-                if savedRow == {}:
-                    savedRow =  row.copy()
-                    suggestions.append(row[c1])
-                    matchFound = True
-                else:
-                    suggestions.append(row[c1])
-                    matchFound = False
-            else:
-                levDist = distance(search_string,row[c1].lower())
-                if levDist <= levDistMin:
-                    suggestions.append(row[c1])
-    if matchFound == True:
-        return savedRow, True
-    else:
-        return suggestions, False
-
-def searchProm(cardname):
-    search_string = cardname.lower()
-    suggestions = []
-    savedRow = {}
-    matchFound = False
-    with open('promissories.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5, c6 = reader.fieldnames
-        for row in reader:
-            aliasList = list(row[c6].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
-            	if search_string in ['empyrean prom', 'empyrean promissory']:
-            	    suggestions.append(row[c1])
-            	else:
-                    return row, True
-            elif search_string in genAlias: 
-                if savedRow == {}:
-                    savedRow =  row.copy()
-                    suggestions.append(row[c1])
-                    matchFound = True
-                else:
-                    suggestions.append(row[c1])
-                    matchFound = False
-            else:
-                levDist = distance(search_string,row[c1].lower())
-                if levDist <= levDistMin:
-                    suggestions.append(row[c1])
-    if matchFound == True:
-        return savedRow, True
-    else:
-        return suggestions, False
-
-def searchRelic(cardname):
-    search_string = cardname.lower()
-    suggestions = []
-    savedRow = {}
-    matchFound = False
-    with open('relics.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5, c6 = reader.fieldnames
-        for row in reader:
-            aliasList = list(row[c6].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
-                return row, True
-            elif search_string in genAlias: 
-                if savedRow == {}:
-                    savedRow =  row.copy()
-                    suggestions.append(row[c1])
-                    matchFound = True
-                else:
-                    suggestions.append(row[c1])
-                    matchFound = False
-            else:
-                levDist = distance(search_string,row[c1].lower())
-                if levDist <= levDistMin:
-                    suggestions.append(row[c1])
-    if matchFound == True:
-        return savedRow, True
-    else:
-        return suggestions, False
-
-def searchTech(cardname):
-    search_string = cardname.lower()
-    suggestions = []
-    savedRow = {}
-    matchFound = False
-    with open('techs.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5, c6, c7 = reader.fieldnames
-        for row in reader:
-            aliasList = list(row[c7].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
-                return row, True
-            elif search_string in genAlias: 
-                if savedRow == {}:
-                    savedRow =  row.copy()
-                    suggestions.append(row[c1])
-                    matchFound = True
-                else:
-                    suggestions.append(row[c1])
-                    matchFound = False
-            else:
-                levDist = distance(search_string,row[c1].lower())
-                if levDist <= levDistMin:
-                    suggestions.append(row[c1])
-    if matchFound == True:
-        return savedRow, True
-    else:
-        return suggestions, False
-
-def searchUnit(unitname):
-    search_string = unitname.lower()
-    suggestions = []
-    savedRow = {}
-    matchFound = False
-    with open('units.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        c1, c2, c3, c4, c5, c6, c7 = reader.fieldnames
-        for row in reader:
-            aliasList = list(row[c7].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
-                return row, True
-            elif search_string in genAlias: 
-                if savedRow == {}:
-                    savedRow =  row.copy()
-                    suggestions.append(row[c1])
-                    matchFound = True
-                else:
-                    suggestions.append(row[c1])
-                    matchFound = False
-            else:
-                levDist = distance(search_string,row[c1].lower())
-                if levDist <= levDistMin:
-                    suggestions.append(row[c1])
-    if matchFound == True:
-        return savedRow, True
-    else:
-        return suggestions, False
-
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
@@ -374,7 +68,7 @@ async def on_error(event, *args, **kwargs):
 
 @bot.command(name='ability',brief='Returns faction ability information by name.',help='Searches faction abilities for the specified name or partial match (<arg>).\n\nExample usage:\n?ability assimilate\n?ability entanglement')
 async def lookUpAbility(ctx, *, arg):
-    cardinfo, match = searchAbility(arg)
+    cardinfo, match = search(arg, 'abilities.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
@@ -399,7 +93,7 @@ async def ability_error(ctx, error):
 
 @bot.command(name='actioncard',brief='Returns action card information by name.',help='Searches action cards for the specified name or partial match (<arg>).\n\nExample usage:\n?actioncard sabotage\n?actioncard rise')
 async def lookUpActionCard(ctx, *, arg):
-    cardinfo, match = searchAC(arg)
+    cardinfo, match = search(arg,'actioncards.csv')
     if match:
         cardlore = cardinfo["Flavour Text"].split("|")
         separator = "\n"
@@ -430,7 +124,7 @@ async def ac(ctx):
 
 @bot.command(name='agenda',brief='Returns agenda card information by name.',help='Searches agenda cards for the specified name or partial match (<arg>).\n\nExample usage:\n?agenda mutiny\n?agenda ixthian')
 async def lookUpAgenda(ctx, *, arg):
-    cardinfo, match = searchAgenda(arg)
+    cardinfo, match = search(arg,'agendas.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
@@ -455,7 +149,7 @@ async def agenda_error(ctx, error):
 
 @bot.command(name='exploration',brief='Returns exploration card information by name.',help='Searches exploration cards for the specified name or partial match(<arg>).\n\nExample usage:\n?exploration freelancers\n?exploration fabricators')
 async def lookUpExplore(ctx, *, arg):
-    cardinfo, match = searchExplore(arg)
+    cardinfo, match = search(arg,'exploration.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         cardlore = cardinfo["Flavour Text"].split("|")
@@ -488,7 +182,7 @@ async def exp(ctx):
 
 @bot.command(name='leader',brief='Returns leader information by name.',help='Searches leaders for the specified name or faction + type(<arg>).\n\nExample usage:\n?leader ta zern\n?leader nekro agent')
 async def lookUpLeader(ctx, *, arg):
-    cardinfo, match = searchLeader(arg)
+    cardinfo, match = search(arg,'leaders.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         cardlore = cardinfo["Flavour Text"].split("|")
@@ -514,7 +208,7 @@ async def leader_error(ctx, error):
 
 @bot.command(name='objective',brief='Returns objective information by name.',help='Searches public and secret objectives for the specified name or partial match (<arg>).\n\nExample usage:\n?objective diversify research\n?objective monument')
 async def lookUpObjective(ctx, *, arg):
-    cardinfo, match = searchObjective(arg)
+    cardinfo, match = search(arg,'objectives.csv')
     if match:
         embed=discord.Embed(title = cardinfo["Name"], description= "*" + cardinfo["Type"] + " Objective - " + cardinfo["Classification"] + " Phase*\n\n" + cardinfo["Rules Text"], color=botColor)
         if cardinfo["Notes"] != "":
@@ -540,7 +234,7 @@ async def obj(ctx):
 
 @bot.command(name='planet',brief='Returns planet information by name.',help='Searches planet cards for the specified name or partial match (<arg>).\n\nExample usage:\n?planet bereg\n?planet elysium')
 async def lookUpPlanet(ctx, *, arg):
-    cardinfo, match = searchPlanet(arg)
+    cardinfo, match = search(arg,'planets.csv')
     if match:
         techSkip = "\n" + cardinfo["Classification"] + " Technology Specialty" if cardinfo["Classification"] else ""
         embed=discord.Embed(title = cardinfo["Name"], description= cardinfo["Type"] + " - " + cardinfo["Res_Inf"] + techSkip, color=botColor)
@@ -567,7 +261,7 @@ async def planet_error(ctx, error):
 
 @bot.command(name='promissory',brief='Returns promissory note information by name.',help='Searches generic and faction promissory notes for the specified name, partial match, or faction shorthand + "note" (<arg>).\n\nExample usage:\n?promissory alliance\n?promissory argent note')
 async def lookUpProm(ctx, *, arg):
-    cardinfo, match = searchProm(arg)
+    cardinfo, match = search(arg,'promissories.csv')
     if match:
         separator = "\n"
         rulesText = cardinfo["Rules Text"].split("|")
@@ -595,7 +289,7 @@ async def prom(ctx):
 
 @bot.command(name='relic',brief='Returns relic information by name.',help='Searches relics for the specified name or partial match (<arg>).\n\nExample usage:\n?relic the obsidian\n?relic emphidia')
 async def lookUpRelic(ctx, *, arg):
-    cardinfo, match = searchRelic(arg)
+    cardinfo, match = search(arg,'relics.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
@@ -621,7 +315,7 @@ async def relic_error(ctx, error):
 
 @bot.command(name='tech',brief='Returns technology information by name.',help='Searches generic and faction technology cards for the specified name or partial match (<arg>).\n\nExample usage:\n?tech dreadnought ii\n?tech dread 2')
 async def lookUpTech(ctx, *, arg):
-    cardinfo, match = searchTech(arg)
+    cardinfo, match = search(arg,'techs.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
@@ -646,7 +340,7 @@ async def tech_error(ctx, error):
 
 @bot.command(name='unit',brief='Returns unit information by name.',help='Searches generic and faction units for the specified name or partial match (<arg>).\n\nExample usage:\n?unit strike wing alpha\n?unit saturn engine')
 async def lookUpUnit(ctx, *, arg):
-    cardinfo, match = searchUnit(arg)
+    cardinfo, match = search(arg,'units.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
