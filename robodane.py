@@ -346,7 +346,7 @@ async def prom(ctx, arg):
     await lookUpProm.invoke(ctx, arg)
 
 @slash.slash(
-    name="prom",
+    name="relic",
     guild_ids=guild_ids,
     description="Searches relics for the name or partial match. Example usage: /relic the obsidian /relic emphidia",
     options=[manage_commands.create_option(
