@@ -2,8 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 from dotenv import load_dotenv
-import random, sys, getopt
-from random import shuffle
+import sys, getopt
 import math
 import time
 from datetime import datetime
@@ -34,8 +33,9 @@ def searchAbility(cardname):
         c1, c2, c3, c4, c5 = reader.fieldnames
         for row in reader:
             aliasList = list(row[c5].split(", "))
-            genAlias = [row[c1][i: i+len(search_string)] for i in range(len(row[c1])-len(search_string)+1)]
-            if row[c1].lower() == search_string or search_string in aliasList:
+            orig_name_lower = row[c1].lower()
+            genAlias = [orig_name_lower[i: i+len(search_string)] for i in range(len(orig_name_lower)-len(search_string)+1)]
+            if orig_name_lower == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias: 
                 if savedRow == {}:
@@ -46,7 +46,7 @@ def searchAbility(cardname):
                     suggestions.append(row[c1])
                     matchFound = False
             else:
-                levDist = distance(search_string,row[c1].lower())
+                levDist = distance(search_string,orig_name_lower)
                 if levDist <= levDistMin:
                     suggestions.append(row[c1])
     if matchFound == True:
@@ -386,7 +386,7 @@ async def lookUpAbility(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -413,7 +413,7 @@ async def lookUpActionCard(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -442,7 +442,7 @@ async def lookUpAgenda(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -470,7 +470,7 @@ async def lookUpExplore(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -501,7 +501,7 @@ async def lookUpLeader(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -523,7 +523,7 @@ async def lookUpObjective(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -554,7 +554,7 @@ async def lookUpPlanet(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -578,7 +578,7 @@ async def lookUpProm(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -608,7 +608,7 @@ async def lookUpRelic(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -633,7 +633,7 @@ async def lookUpTech(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -658,7 +658,7 @@ async def lookUpUnit(ctx, *, arg):
         if cardinfo == []:
             embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
         else:
-            embed = discord.Embed(title = "No matches found.", description = "Suggested searchs: " + ", ".join(cardinfo))
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
     await ctx.message.delete(delay = 60)
     await newMessage.delete(delay = 300)
@@ -670,4 +670,3 @@ async def unit_error(ctx, error):
         await ctx.message.delete(delay = 60)
 
 bot.run(token)
-random.seed(datetime.now())
