@@ -85,7 +85,7 @@ async def on_error(event, *args, **kwargs):
         required=True
     )])
 #@bot.command(name='ability',brief='Returns faction ability information by name.',help='Searches faction abilities for the specified name or partial match (<arg>).\n\nExample usage:\n' + prefix + 'ability assimilate\n' + prefix + 'ability entanglement')
-async def lookUpAbility(ctx, *, arg):
+async def lookUpAbility(ctx, arg):
     cardinfo, match = search(arg, 'abilities.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
