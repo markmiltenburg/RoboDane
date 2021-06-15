@@ -77,7 +77,7 @@ async def on_error(event, *args, **kwargs):
 @slash.slash(
     name="ability",
     guild_ids=guild_ids,
-    description="Searches faction abilities for the specified name or partial match (<arg>).\n\nExample usage:\n' + prefix + 'ability assimilate\n' + prefix + 'ability entanglement'",
+    description="Searches faction abilities.\nExample usage:\n/ability assimilate\nability entanglement",
     options=[manage_commands.create_option(
         name="ability",
         description="Ability Name",
