@@ -77,14 +77,13 @@ async def on_error(event, *args, **kwargs):
 @slash.slash(
     name="ability",
     guild_ids=guild_ids,
-    description="Searches faction abilities.\nExample usage:\n/ability assimilate\nability entanglement",
+    description="Searches faction abilities. Example usage: /ability assimilate /ability entanglement",
     options=[manage_commands.create_option(
         name="ability",
         description="Ability Name",
         option_type=3,
         required=True
     )])
-#@bot.command(name='ability',brief='Returns faction ability information by name.',help='Searches faction abilities for the specified name or partial match (<arg>).\n\nExample usage:\n' + prefix + 'ability assimilate\n' + prefix + 'ability entanglement')
 async def lookUpAbility(ctx, arg):
     cardinfo, match = search(arg, 'abilities.csv')
     if match:
@@ -100,14 +99,7 @@ async def lookUpAbility(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await ctx.message.delete(delay = time_to_delete_request)
     await newMessage.delete(delay = time_to_delete_response)
-
-#@lookUpAbility.error
-#async def ability_error(ctx, error):
-#    if isinstance(error, commands.MissingRequiredArgument):
-#        await ctx.send_help('ability')
-#        await ctx.message.delete(delay = time_to_delete_request)
 
 @bot.command(name='actioncard',brief='Returns action card information by name.',help='Searches action cards for the specified name or partial match (<arg>).\n\nExample usage:\n' + prefix + 'actioncard sabotage\n' + prefix + 'actioncard rise')
 async def lookUpActionCard(ctx, *, arg):
