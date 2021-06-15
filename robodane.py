@@ -363,4 +363,11 @@ async def unit_error(ctx, error):
         await ctx.send_help('unit')
         await ctx.message.delete(delay = 60)
 
+@bot.command(name='l1hero',brief='Returns information about using the L1Z1X hero.',help='Returns information about using the L1Z1X hero.\n\nExample usage:\n?l1hero')
+async def l1hero(ctx):
+    embed=discord.Embed(title = "L1Z1X Hero - Dark Space Navigation", description = "This is a \"teleport\". The move value of your dreads/flagship is irrelevant.\nYou must legally be able to move into the chosen system, so no supernovas, no nebulas, no asteroid fields without antimass.\nYou can move dreads & flagship out of systems containing your command tokens.\nThey can only transport units from their origin system without their command tokens, even if it is the only capacity unit in a system w ground forces in the space area.", color=botColor)
+    newMessage = await ctx.send(embed=embed)
+    await ctx.message.delete(delay = 60)
+    await newMessage.delete(delay = 300)
+
 bot.run(token)
