@@ -38,7 +38,11 @@ def search(cardname, filename):
             if orig_name_lower == search_string or search_string in aliasList:
                 return row, True
             elif search_string in genAlias:
-                if savedRow == {}:
+                if savedRow == {} and "omega" in search_string and "omega" in orig_name_lower:
+                    savedRow =  row.copy()
+                    suggestions.append(row[c1])
+                    matchFound = True
+                elif savedRow == {} and not "omega" in search_string:
                     savedRow =  row.copy()
                     suggestions.append(row[c1])
                     matchFound = True
