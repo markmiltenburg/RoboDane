@@ -20,6 +20,7 @@ time_to_delete_response = 300
 prefix = '?'
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
+guild_ids = [696729526830628864, 409096158372167683, 409044671508250625]
 
 # Change the no_category default string
 help_command = commands.DefaultHelpCommand(
@@ -27,6 +28,7 @@ help_command = commands.DefaultHelpCommand(
 )
 
 bot = commands.Bot(command_prefix=prefix, help_command = help_command)
+slash = SlashCommand(bot, sync_commands=True)
 
 def search(cardname, filename):
     search_string = cardname.lower()
@@ -71,7 +73,18 @@ async def on_error(event, *args, **kwargs):
         else:
             raise
 
-@bot.command(name='ability',brief='Returns faction ability information by name.',help='Searches faction abilities for the specified name or partial match (<arg>).\n\nExample usage:\n' + prefix + 'ability assimilate\n' + prefix + 'ability entanglement')
+
+@slash.slash(
+    name="ability",
+    guild_ids=guild_ids,
+    description="Searches faction abilities for the specified name or partial match (<arg>).\n\nExample usage:\n' + prefix + 'ability assimilate\n' + prefix + 'ability entanglement'",
+    options=[manage_commands.create_option(
+        name="ability",
+        description="Ability Name",
+        option_type=3,
+        required=True
+    )])
+#@bot.command(name='ability',brief='Returns faction ability information by name.',help='Searches faction abilities for the specified name or partial match (<arg>).\n\nExample usage:\n' + prefix + 'ability assimilate\n' + prefix + 'ability entanglement')
 async def lookUpAbility(ctx, *, arg):
     cardinfo, match = search(arg, 'abilities.csv')
     if match:
