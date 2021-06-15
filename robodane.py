@@ -103,11 +103,11 @@ async def lookUpAbility(ctx, *, arg):
     await ctx.message.delete(delay = time_to_delete_request)
     await newMessage.delete(delay = time_to_delete_response)
 
-@lookUpAbility.error
-async def ability_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send_help('ability')
-        await ctx.message.delete(delay = time_to_delete_request)
+#@lookUpAbility.error
+#async def ability_error(ctx, error):
+#    if isinstance(error, commands.MissingRequiredArgument):
+#        await ctx.send_help('ability')
+#        await ctx.message.delete(delay = time_to_delete_request)
 
 @bot.command(name='actioncard',brief='Returns action card information by name.',help='Searches action cards for the specified name or partial match (<arg>).\n\nExample usage:\n' + prefix + 'actioncard sabotage\n' + prefix + 'actioncard rise')
 async def lookUpActionCard(ctx, *, arg):
