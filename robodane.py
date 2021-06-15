@@ -16,7 +16,7 @@ from discord_slash.utils import manage_commands
 levDistMin = 2
 botColor = 0x2b006b
 time_to_delete_request = 60
-time_to_delete_response = 300
+time_to_delete_response = 60
 prefix = '?'
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
