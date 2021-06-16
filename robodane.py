@@ -10,10 +10,13 @@ import csv
 import os
 import re
 from Levenshtein import distance
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
 from discord_slash import SlashCommand
 from discord_slash.utils import manage_commands
 
 levDistMin = 2
+fuzzDistMin = 80
 botColor = 0x2b006b
 time_to_delete_response = 300
 prefix = '?'
@@ -52,9 +55,12 @@ def search(cardname, filename):
                     suggestions.append(row[c1])
                     matchFound = False
             else:
-                levDist = distance(search_string,orig_name_lower)
-                if levDist <= levDistMin:
+                fuzzDist = fuzz.partial_ratio(search_string,orig_name_lower)
+                if fuzzDist >= fuzzDistMin:
                     suggestions.append(row[c1])
+                #levDist = distance(search_string,orig_name_lower)
+                #if levDist <= levDistMin:
+                #    suggestions.append(row[c1])
     if matchFound == True:
         return savedRow, True
     else:
@@ -433,7 +439,7 @@ async def lookUpUnit(ctx, arg):
     description="Returns information about using the L1Z1X hero. Example usage: /l1hero",
 )
 async def l1hero(ctx):
-    embed=discord.Embed(title = "L1Z1X Hero - Dark Space Navigation", description = "This is a \"teleport\". The move value of your dreads/flagship is irrelevant.\nYou must legally be able to move into the chosen system, so no supernovas, no nebulas, no asteroid fields without Antimass Deflectors.\nYou can move dreads & flagship out of systems containing your command tokens.\nThey can transport units from their origin system.", color=botColor)
+    embed=discord.Embed(title = "L1Z1X Hero - Dark Space Navigation", description = "This is a \"teleport\". The move value of your dreads/flagship is irrelevant.\nYou must legally be able to move into the chosen system, so no supernovas and no asteroid fields without Antimass Deflectors.\nYou can move dreads & flagship out of systems containing your command tokens.\nThey can transport units from their origin system.", color=botColor)
     newMessage = await ctx.send(embed=embed)
     await newMessage.delete(delay = time_to_delete_response)
 
