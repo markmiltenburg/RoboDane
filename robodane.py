@@ -24,7 +24,7 @@ load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 guild_ids = [696729526830628864, 409096158372167683, 409044671508250625, 692059147201413211]
 
-bot = commands.Bot(command_prefix=prefix, help_command = help_command)
+bot = commands.Bot(command_prefix=prefix)
 slash = SlashCommand(bot, sync_commands=True)
 
 def search(cardname, filename):
