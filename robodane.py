@@ -433,7 +433,7 @@ async def lookUpUnit(ctx, arg):
     description="Returns information about using the L1Z1X hero. Example usage: /l1hero",
 )
 async def l1hero(ctx):
-    embed=discord.Embed(title = "L1Z1X Hero - Dark Space Navigation", description = "This is a \"teleport\". The move value of your dreads/flagship is irrelevant.\nYou must legally be able to move into the chosen system, so no supernovas, no nebulas, no asteroid fields without Antimass Deflectors.\nYou can move dreads & flagship out of systems containing your command tokens.\nThey can only transport units from their origin system without their command tokens, even if it is the only capacity unit in a system w ground forces in the space area.", color=botColor)
+    embed=discord.Embed(title = "L1Z1X Hero - Dark Space Navigation", description = "This is a \"teleport\". The move value of your dreads/flagship is irrelevant.\nYou must legally be able to move into the chosen system, so no supernovas, no nebulas, no asteroid fields without Antimass Deflectors.\nYou can move dreads & flagship out of systems containing your command tokens.\nThey can transport units from their origin system.", color=botColor)
     newMessage = await ctx.send(embed=embed)
     await newMessage.delete(delay = time_to_delete_response)
 
@@ -452,8 +452,8 @@ async def titanstiming(ctx):
     guild_ids=guild_ids,
     description="Returns information about using the Sardakk N\'orr commander. Example usage: /sardakkcommander",
 )
-async def l1hero(ctx):
-    embed=discord.Embed(title = "Sardakk Commander - G\'hom Sek\'kus", description = "The Sardakk N\'orr commander/alliance does not care about:\n1) The space area of the active system\n2) The space area of the systems containing planets being committed from\n3) Effects that prevent movement, including being a structure and ground force, Ceasefire and Enforced Travel Ban. Committing is not moving.\n4) Whether the planets being committed to are friendly, enemy, or uncontrolled.\n\nThe Sardakk Norr commander/alliance does care about:\n1) Being the active player\n2) The DMZ (Demilitarized Zone Planet Attachment)\n3) Effects that end your turn, such as Nullification Field or Minister of Peace\n4) Parley. Your ground forces will be removed if you have no capacity in the space area of the active system.\n5) Your command tokens in the systems containing the planets being committed from", color=botColor)
+async def sardakkcommander(ctx):
+    embed=discord.Embed(title = "Sardakk Commander - G\'hom Sek\'kus", description = "The Sardakk N\'orr commander/alliance does not care about:\n1) The space area of the active system\n2) The space area of the systems containing planets being committed from\n3) Whether the planets being committed to are friendly, enemy, or uncontrolled.\n\nThe Sardakk Norr commander/alliance does care about:\n1) Being the active player\n2) Effects that prevent movement, including being a structure and ground force, Ceasefire and Enforced Travel Ban. Committing is not moving.\n3) Anomaly movement rules\n4) Effects that end your turn, such as Nullification Field or Minister of Peace\n5) Parley. Your ground forces will be removed if you have no capacity in the space area of the active system.\n6) The DMZ (Demilitarized Zone Planet Attachment)\n7) Your command tokens in the systems containing the planets being committed from", color=botColor)
     newMessage = await ctx.send(embed=embed)
     await newMessage.delete(delay = time_to_delete_response)
 
