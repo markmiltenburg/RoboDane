@@ -229,7 +229,7 @@ async def lookUpLeader(ctx, arg):
         cardrules = cardinfo["Rules Text"].split("|")
         cardlore = cardinfo["Flavour Text"].split("|")
         separator = "\n"
-        embed=discord.Embed(title = "__**" + cardinfo["Name"] + "**__", description= "***" + cardinfo["Type"] + "***\n" + cardinfo["Classification"] + " " + cardinfo["Type"] + "\n" + separator.join(cardrules), color=botColor)
+        embed=discord.Embed(title = "__**" + cardinfo["Name"] + "**__", description= "***" + cardinfo["Type"] + " " + cardinfo["Classification"] + "***\n" + cardinfo["Subtitle"] + "\n" + separator.join(cardrules), color=botColor)
         embed.add_field(name = "*Flavour Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
