@@ -293,7 +293,7 @@ async def lookUpPlanet(ctx, arg):
     cardinfo, match = search(arg,'planets.csv')
     if match:
         techSkip = "\n" + cardinfo["Classification"] + " Technology Specialty" if cardinfo["Classification"] else ""
-        embed=discord.Embed(title = cardinfo["Name"], description= cardinfo["Type"] + " - " + cardinfo["Res_Inf"] + techSkip, color=botColor)
+        embed=discord.Embed(title = cardinfo["Name"], description= cardinfo["Type"] + " - **" + cardinfo["Res_Inf"] + "**" + techSkip, color=botColor)
         embed.add_field(name = "*Flavour Text*", value = "*" + cardinfo["Flavour Text"] + "*", inline = False)
         if cardinfo["Rules Text"] != "":
             legend = cardinfo["Rules Text"].split("|")
