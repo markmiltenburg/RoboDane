@@ -468,7 +468,7 @@ async def helprobodane(ctx):
     embed1=discord.Embed(title = "RoboDane Help", description = "Page 1\n\n**/ability <arg>**\nSearches faction abilities by name.\nExample usage: /ability assimilate /ability entanglement\n\n/**actioncard <arg>** or **/ac <arg>**\nSearches action cards by name.\nExample usage: /actioncard sabotage /actioncard rise\n/ac sabotage /ac rise\n\n**/agenda <arg>**\nSearches agenda cards by name.\nExample usage: /agenda mutiny /agenda ixthian\n\n**/exploration <arg>** or **/exp <arg>**\nSearches exploration cards by name.\nExample usage: /exploration freelancers /exploration fabricators\n/exp freelancers /exp fabricators\n\n**/leaders <arg>**\nSearches leaders by name or faction.\nExample usage: /leader ta zern /leader nekro agent", color=botColor)
     embed2=discord.Embed(title = "RoboDane Help", description = "Page 2\n\n**/objective <arg>** or **/obj <arg>**\nSearches public and secret objectives.\nExample usage: /objective become a legend /objective monument\n/obj become a legend /obj monument\n\n**/planet <arg>**\nSearches planet cards.\nExample usage: /planet bereg /planet elysium\n\n**/promissory <arg>** or **/prom <arg>**\nSearches generic and faction promissories.\nExample usage: /promissory spy net /promissory ceasefire\n/prom spy net /prom ceasefire\n\n**/relic <arg>**\nSearches relics for the name or partial match.\nExample usage: /relic the obsidian /relic emphidia\n\n**/tech <arg>**\nSearches generic and faction technologies.\nExample usage: /tech dreadnought 2 /tech magen", color=botColor)
     embed3=discord.Embed(title = "RoboDane Help", description = "Page 3\n\n**/unit <arg>**\nSearches generic and faction units.\nExample usage: /unit strike wing alpha /unit saturn engine\n\n**/l1hero**\nReturns information about using the L1Z1X hero.\nExample usage: /l1hero\n\n**/titanstiming**\nReturns information about timing windows for the titans abilities.\nExample usage: /titanstiming\n\n**/sardakkcommander**\nReturns information about using the Sardakk N\'orr commander.\nExample usage: /sardakkcommander\n\n**/help**\nReturns information about using RoboDane.\nExample usage: /help", color=botColor)
-    embed4=discord.Embed(title =  "RoboDane Paginator Help", description = "◀ Goes back 1 page\n▶ Goes forward 1 page\nℹ Brings up this page")
+    embed4=discord.Embed(title =  "RoboDane Paginator Help", description = "◀ Goes back 1 page\n⏹ Ends the command\n▶ Goes forward 1 page\nℹ Brings up this page")
     paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx, timeout=30, auto_footer=True, remove_reactions=True)
     paginator.add_reaction('◀', "back")
     paginator.add_reaction('⏹', "delete")
@@ -476,6 +476,5 @@ async def helprobodane(ctx):
     paginator.add_reaction('ℹ', "page 3")
     embeds = [embed1, embed2, embed3, embed4]
     await paginator.run(embeds)
-    await paginator.delete()
 
 bot.run(token)
