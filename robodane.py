@@ -480,6 +480,9 @@ async def helprobodane(ctx):
     paginator.remove_reaction_at(0)
     paginator.remove_reaction_at(0)
     paginator.remove_reaction_at(0)
-    await paginator.run([discord.Embed()])
+    embed1=discord.Embed(title="", description="")
+    embed2=discord.Embed(title="", description="")
+    embed3=discord.Embed(title="", description="")
+    embed4=discord.Embed(title="", description="")
 
 bot.run(token)
