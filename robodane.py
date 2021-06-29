@@ -27,7 +27,6 @@ guild_ids = [696729526830628864, 409096158372167683, 409044671508250625, 6920591
 
 bot = commands.Bot(command_prefix=prefix)
 slash = SlashCommand(bot, sync_commands=True)
-DiscordComponents(bot)
 
 def search(cardname, filename):
     search_string = cardname.lower()
