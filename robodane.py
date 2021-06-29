@@ -476,5 +476,9 @@ async def helprobodane(ctx):
     paginator.add_reaction('ℹ', "page 3")
     embeds = [embed1, embed2, embed3, embed4]
     await paginator.run(embeds)
+    paginator.remove_reaction_at(0)
+    paginator.remove_reaction_at(0)
+    paginator.remove_reaction_at(0)
+    paginator.remove_reaction_at(0)
 
 bot.run(token)
