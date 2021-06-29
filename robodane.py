@@ -10,6 +10,7 @@ import csv
 import os
 import re
 import DiscordUtils
+from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
 from Levenshtein import distance
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
@@ -27,6 +28,7 @@ guild_ids = [696729526830628864, 409096158372167683, 409044671508250625, 6920591
 
 bot = commands.Bot(command_prefix=prefix)
 slash = SlashCommand(bot, sync_commands=True)
+DiscordComponents(bot)
 
 def search(cardname, filename):
     search_string = cardname.lower()
@@ -458,7 +460,7 @@ async def sardakkcommander(ctx):
     embed=discord.Embed(title = "Sardakk Commander - G\'hom Sek\'kus", description = "The Sardakk N\'orr commander/alliance does not care about:\n1) The space area of the active system\n2) The space area of the systems containing planets being committed from\n3) Whether the planets being committed to are friendly, enemy, or uncontrolled.\n\nThe Sardakk Norr commander/alliance does care about:\n1) Being the active player\n2) Effects that prevent movement, including being a structure and ground force, Ceasefire and Enforced Travel Ban. Committing is not moving.\n3) Anomaly movement rules\n4) Effects that end your turn, such as Nullification Field or Minister of Peace\n5) Parley. Your ground forces will be removed if you have no capacity in the space area of the active system.\n6) The DMZ (Demilitarized Zone Planet Attachment)\n7) Your command tokens in the systems containing the planets being committed from", color=botColor)
     newMessage = await ctx.send(embed=embed)
     await newMessage.delete(delay = time_to_delete_response)
-
+'''
 @slash.slash(
     name="help",
     guild_ids=guild_ids,
@@ -480,5 +482,33 @@ async def helprobodane(ctx):
     paginator.remove_reaction_at(0)
     paginator.remove_reaction_at(0)
     paginator.remove_reaction_at(0)
+'''
+@slash.slash(
+    name="help",
+    guild_ids=guild_ids,
+    description="Returns information about using RoboDane. Example usage: /help",
+)
+async def helprobodane(ctx):
+    embed1=discord.Embed(title = "RoboDane Help", description = "Page 1\n\n**/ability <arg>**\nSearches faction abilities by name.\nExample usage: /ability assimilate /ability entanglement\n\n/**actioncard <arg>** or **/ac <arg>**\nSearches action cards by name.\nExample usage: /actioncard sabotage /actioncard rise\n/ac sabotage /ac rise\n\n**/agenda <arg>**\nSearches agenda cards by name.\nExample usage: /agenda mutiny /agenda ixthian\n\n**/exploration <arg>** or **/exp <arg>**\nSearches exploration cards by name.\nExample usage: /exploration freelancers /exploration fabricators\n/exp freelancers /exp fabricators\n\n**/leaders <arg>**\nSearches leaders by name or faction.\nExample usage: /leader ta zern /leader nekro agent", color=botColor)
+    embed2=discord.Embed(title = "RoboDane Help", description = "Page 2\n\n**/objective <arg>** or **/obj <arg>**\nSearches public and secret objectives.\nExample usage: /objective become a legend /objective monument\n/obj become a legend /obj monument\n\n**/planet <arg>**\nSearches planet cards.\nExample usage: /planet bereg /planet elysium\n\n**/promissory <arg>** or **/prom <arg>**\nSearches generic and faction promissories.\nExample usage: /promissory spy net /promissory ceasefire\n/prom spy net /prom ceasefire\n\n**/relic <arg>**\nSearches relics for the name or partial match.\nExample usage: /relic the obsidian /relic emphidia\n\n**/tech <arg>**\nSearches generic and faction technologies.\nExample usage: /tech dreadnought 2 /tech magen", color=botColor)
+    embed3=discord.Embed(title = "RoboDane Help", description = "Page 3\n\n**/unit <arg>**\nSearches generic and faction units.\nExample usage: /unit strike wing alpha /unit saturn engine\n\n**/l1hero**\nReturns information about using the L1Z1X hero.\nExample usage: /l1hero\n\n**/titanstiming**\nReturns information about timing windows for the titans abilities.\nExample usage: /titanstiming\n\n**/sardakkcommander**\nReturns information about using the Sardakk N\'orr commander.\nExample usage: /sardakkcommander\n\n**/help**\nReturns information about using RoboDane.\nExample usage: /help", color=botColor)
+    embeds = [embed1, embed2, embed3, embed4]
+    current = 0
+    mainMessage = await ctx.send(embed = embeds[current], components = [[Button(label = "Prev",id = "back",style = ButtonStyle.red),Button(label = f"Page {int(embeds.index(embeds[current])) + 1}/{len(embeds)}",id = "cur",style = ButtonStyle.grey,disabled = True),Button(label = "Next",id = "front",style = ButtonStyle.red)]])
+    while True:
+        try:
+            interaction = await bot.wait_for("button_click",check = lambda i: i.component.id in ["back", "front"], timeout = 10.0)
+            if interaction.component.id == "back":
+                current -= 1
+            elif interaction.component.id == "front":
+                current += 1
+            if current == len(embeds):
+                current = 0
+            elif current < 0:
+                current = len(embeds) - 1
+            await interaction.respond(type = InteractionType.UpdateMessage,embed = embeds[current], components = [[Button(label = "Prev",id = "back",style = ButtonStyle.red),Button(label = f"Page {int(embeds.index(embeds[current])) + 1}/{len(embeds)}",id = "cur",style = ButtonStyle.grey,disabled = True),Button(label = "Next",id = "front",style = ButtonStyle.red)]])
+        except asyncio.TimeoutError:
+            await mainMessage.delete()
+            break
 
 bot.run(token)
