@@ -24,9 +24,22 @@ prefix = '?'
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
 guild_ids = [696729526830628864, 409096158372167683, 409044671508250625, 692059147201413211]
+power_user_roles = [
+    # Prod Roles
+    719340765611950232,  # Admin Council
+    713810899701596261,  # Moderators
+    814618314952146955,  # SCPT Mod Role
+    647319146664558594,  # Rules Experts
+    # Dev Roles
+    697142281991356437,  # Custodian
+]
 
 bot = commands.Bot(command_prefix=prefix)
 slash = SlashCommand(bot, sync_commands=True)
+
+def check_user(user_roles, role_ids):
+    user_role_ids = [(role.id) for role in user_roles]
+    return len(list(set(user_role_ids) & set(role_ids))) > 0
 
 def search(cardname, filename):
     search_string = cardname.lower()
@@ -84,8 +97,14 @@ async def on_error(event, *args, **kwargs):
         description="Ability Name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpAbility(ctx, arg):
+async def lookUpAbility(ctx, arg, keep=0):
     cardinfo, match = search(arg, 'abilities.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
@@ -100,7 +119,8 @@ async def lookUpAbility(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="actioncard",
