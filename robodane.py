@@ -34,7 +34,7 @@ power_user_roles = [
     697142281991356437,  # Custodian
 ]
 
-bot = commands.Bot(command_prefix=prefix)
+bot = commands.Bot(command_prefix=prefix, help_command = None)
 slash = SlashCommand(bot, sync_commands=True)
 
 def check_user(user_roles, role_ids):
