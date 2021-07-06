@@ -119,7 +119,7 @@ async def lookUpAbility(ctx, arg, keep=0):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    if (keep == 0 or (keep == 1 and check_user(ctx.author.roles, power_user_roles))):
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
         await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
@@ -131,8 +131,14 @@ async def lookUpAbility(ctx, arg, keep=0):
         description="Action Card Name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpActionCard(ctx, arg):
+async def lookUpActionCard(ctx, arg, keep=0):
     cardinfo, match = search(arg,'actioncards.csv')
     if match:
         cardlore = cardinfo["Flavour Text"].split("|")
@@ -149,7 +155,8 @@ async def lookUpActionCard(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="ac",
@@ -160,9 +167,15 @@ async def lookUpActionCard(ctx, arg):
         description="Action Card Name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def ac(ctx, arg):
-    await lookUpActionCard.invoke(ctx, arg)
+async def ac(ctx, arg, keep=0):
+    await lookUpActionCard.invoke(ctx, arg, keep)
 
 @slash.slash(
     name="agenda",
@@ -173,8 +186,14 @@ async def ac(ctx, arg):
         description="Agenda Name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpAgenda(ctx, arg):
+async def lookUpAgenda(ctx, arg, keep=0):
     cardinfo, match = search(arg,'agendas.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
@@ -189,7 +208,8 @@ async def lookUpAgenda(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="exploration",
@@ -200,8 +220,14 @@ async def lookUpAgenda(ctx, arg):
         description="Exploration Card Name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpExplore(ctx, arg):
+async def lookUpExplore(ctx, arg, keep=0):
     cardinfo, match = search(arg,'exploration.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
@@ -219,7 +245,8 @@ async def lookUpExplore(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="exp",
@@ -230,9 +257,15 @@ async def lookUpExplore(ctx, arg):
         description="Exploration Card Name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def exp(ctx, arg):
-    await lookUpExplore.invoke(ctx,arg)
+async def exp(ctx, arg, keep=0):
+    await lookUpExplore.invoke(ctx, arg, keep)
 
 @slash.slash(
     name="leader",
@@ -243,8 +276,14 @@ async def exp(ctx, arg):
         description="Leader Name/Faction name and leader type",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpLeader(ctx, arg):
+async def lookUpLeader(ctx, arg, keep=0):
     cardinfo, match = search(arg,'leaders.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
@@ -260,7 +299,8 @@ async def lookUpLeader(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="objective",
@@ -271,8 +311,14 @@ async def lookUpLeader(ctx, arg):
         description="Objective name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpObjective(ctx, arg):
+async def lookUpObjective(ctx, arg, keep=0):
     cardinfo, match = search(arg,'objectives.csv')
     if match:
         embed=discord.Embed(title = cardinfo["Name"], description= "*" + cardinfo["Type"] + " Objective - " + cardinfo["Classification"] + " Phase*\n\n" + cardinfo["Rules Text"], color=botColor)
@@ -284,7 +330,8 @@ async def lookUpObjective(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="obj",
@@ -295,9 +342,15 @@ async def lookUpObjective(ctx, arg):
         description="Objective name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def obj(ctx, arg):
-    await lookUpObjective.invoke(ctx, arg)
+async def obj(ctx, arg, keep=0):
+    await lookUpObjective.invoke(ctx, arg, keep)
 
 @slash.slash(
     name="planet",
@@ -308,8 +361,14 @@ async def obj(ctx, arg):
         description="Planet name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpPlanet(ctx, arg):
+async def lookUpPlanet(ctx, arg, keep=0):
     cardinfo, match = search(arg,'planets.csv')
     if match:
         techSkip = "\n" + cardinfo["Classification"] + " Technology Specialty" if cardinfo["Classification"] else ""
@@ -326,7 +385,8 @@ async def lookUpPlanet(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="promissory",
@@ -337,8 +397,14 @@ async def lookUpPlanet(ctx, arg):
         description="Promissory note",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpProm(ctx, arg):
+async def lookUpProm(ctx, arg, keep=0):
     cardinfo, match = search(arg,'promissories.csv')
     if match:
         separator = "\n"
@@ -352,7 +418,8 @@ async def lookUpProm(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="prom",
@@ -363,9 +430,15 @@ async def lookUpProm(ctx, arg):
         description="Promissory note",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def prom(ctx, arg):
-    await lookUpProm.invoke(ctx, arg)
+async def prom(ctx, arg, keep=0):
+    await lookUpProm.invoke(ctx, arg, keep)
 
 @slash.slash(
     name="relic",
@@ -376,8 +449,14 @@ async def prom(ctx, arg):
         description="Relic name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpRelic(ctx, arg):
+async def lookUpRelic(ctx, arg, keep=0):
     cardinfo, match = search(arg,'relics.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
@@ -393,7 +472,8 @@ async def lookUpRelic(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="tech",
@@ -404,8 +484,14 @@ async def lookUpRelic(ctx, arg):
         description="Technology name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpTech(ctx, arg):
+async def lookUpTech(ctx, arg, keep=0):
     cardinfo, match = search(arg,'techs.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
@@ -420,7 +506,8 @@ async def lookUpTech(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="unit",
@@ -431,8 +518,14 @@ async def lookUpTech(ctx, arg):
         description="Unit name",
         option_type=3,
         required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
     )])
-async def lookUpUnit(ctx, arg):
+async def lookUpUnit(ctx, arg, keep=0):
     cardinfo, match = search(arg,'units.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
@@ -447,37 +540,56 @@ async def lookUpUnit(ctx, arg):
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="l1hero",
     guild_ids=guild_ids,
     description="Returns information about using the L1Z1X hero. Example usage: /l1hero",
-)
-async def l1hero(ctx):
+    options=[manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
+    )])
+async def l1hero(ctx, keep=0):
     embed=discord.Embed(title = "L1Z1X Hero - Dark Space Navigation", description = "This is a \"teleport\". The move value of your dreads/flagship is irrelevant.\nYou must legally be able to move into the chosen system, so no supernovas and no asteroid fields without Antimass Deflectors.\nYou can move dreads & flagship out of systems containing your command tokens.\nThey can transport units from their origin system.", color=botColor)
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="titanstiming",
     guild_ids=guild_ids,
     description="Returns information about timing windows for the titans abilities. Example usage: /titanstiming",
-)
-async def titanstiming(ctx):
+    options=[manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
+    )])
+async def titanstiming(ctx, keep=0):
     embed=discord.Embed(title = "Titans Timing Windows - Terragenesis, Awaken, Ouranos, and Hecatonchires", description = "Activating a system\nis not the same as\nActivating a system that contains X\n\nIf you activate a system that has sleeper tokens on all the planets, no PDS but does have a unit on at least one planet, the first thing you do is use Scanlink Drone Network (SDN).\nAfter exploring you cannot add an additional sleeper token since all sleepers are still present and have not been replaced or moved yet.\nYou can trigger AWAKEN to turn sleeper tokens into PDS, however you cannot use those PDS to DEPLOY their flagship, since you did not \"activate a system that contains 1 or more of your PDS.\"\nLikewise, you cannot activate a system that contains no sleeper tokens, explore using SDN, add a sleeper token and then AWAKEN it since you did not \"activate a system that contains 1 or more of your sleeper tokens.\"\nEven if you had a multi-planet system where one planet has a sleeper token and the explored planet doesn't, AWAKEN specifies \"those tokens\", referring to the tokens present at the time of activation as being able to be replaced.\nIn order to use the mech's Deploy ability, you must have a PDS unit in your reinforcements.", color=botColor)
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="sardakkcommander",
     guild_ids=guild_ids,
     description="Returns information about using the Sardakk N\'orr commander. Example usage: /sardakkcommander",
-)
-async def sardakkcommander(ctx):
+    options=[manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
+    )])
+async def sardakkcommander(ctx, keep=0):
     embed=discord.Embed(title = "Sardakk Commander - G\'hom Sek\'kus", description = "The Sardakk N\'orr commander/alliance does not care about:\n1) The space area of the active system\n2) The space area of the systems containing planets being committed from\n3) Whether the planets being committed to are friendly, enemy, or uncontrolled.\n\nThe Sardakk Norr commander/alliance does care about:\n1) Being the active player\n2) Effects that prevent movement, including being a structure and ground force, Ceasefire and Enforced Travel Ban. Committing is not moving.\n3) Anomaly movement rules\n4) Effects that end your turn, such as Nullification Field or Minister of Peace\n5) Parley. Your ground forces will be removed if you have no capacity in the space area of the active system.\n6) The DMZ (Demilitarized Zone Planet Attachment)\n7) Your command tokens in the systems containing the planets being committed from", color=botColor)
     newMessage = await ctx.send(embed=embed)
-    await newMessage.delete(delay = time_to_delete_response)
+    if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
+        await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
     name="help",
