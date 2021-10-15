@@ -590,6 +590,7 @@ async def sardakkcommander(ctx, keep=0):
     if (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
         await newMessage.delete(delay = time_to_delete_response)
 
+@slash.component_callback()
 async def changepage(ctx, pageincrement):
     # Title string
     titlestring = "RoboDane Help Page "
@@ -610,7 +611,27 @@ async def changepage(ctx, pageincrement):
     if (currentpage + pageincrement) < 1 or (currentpage + pageincrement) > len(help_pages):
         return
 
+    # Create new embed with next page contents and buttons corresponding to page number
+    new_page = currentpage + pageincrement
+    embed = discord.Embed(title = "RoboDane Help Page " + str(new_page) + "/" + str(len(help_pages)), description = help_pages[new_page-1])
+    buttons = []
+    if new_page == 1:
+        buttons = [
+            manage_components.create_button(style=ButtonStyle.blurple, label="Next Page ->", custom_id="buttonforward"),
+        ]
+    elif new_page == len(help_pages):
+        buttons = [
+            manage_components.create_button(style=ButtonStyle.blurple, label="<- Previous Page", custom_id="buttonbackward"),
+        ]
+    else:
+        buttons = [
+            manage_components.create_button(style=ButtonStyle.blurple, label="<- Previous Page", custom_id="buttonbackward"),
+            manage_components.create_button(style=ButtonStyle.blurple, label="Next Page ->", custom_id="buttonforward"),
+        ]
+    action_row = create_actionrow(*buttons)
 
+    #Editing the message
+    await ctx.edit_origin(embed=embedVar, components=[action_row])
 
 # Help forward button
 @slash.component_callback()
@@ -628,8 +649,12 @@ async def buttonbackward(ctx):
     description="Returns information about using RoboDane. Example usage: /help",
 )
 async def helprobodane(ctx):
-    embed1=discord.Embed(title = "RoboDane Help Page 1/3", description = "**/ability <arg>**\nSearches faction abilities by name.\nExample usage: /ability assimilate /ability entanglement\n\n/**actioncard <arg>** or **/ac <arg>**\nSearches action cards by name.\nExample usage: /actioncard sabotage /actioncard rise\n/ac sabotage /ac rise\n\n**/agenda <arg>**\nSearches agenda cards by name.\nExample usage: /agenda mutiny /agenda ixthian\n\n**/exploration <arg>** or **/exp <arg>**\nSearches exploration cards by name.\nExample usage: /exploration freelancers /exploration fabricators\n/exp freelancers /exp fabricators\n\n**/leaders <arg>**\nSearches leaders by name or faction.\nExample usage: /leader ta zern /leader nekro agent", color=botColor)
-    embed2=discord.Embed(title = "RoboDane Help Page 2/3", description = "**/objective <arg>** or **/obj <arg>**\nSearches public and secret objectives.\nExample usage: /objective become a legend /objective monument\n/obj become a legend /obj monument\n\n**/planet <arg>**\nSearches planet cards.\nExample usage: /planet bereg /planet elysium\n\n**/promissory <arg>** or **/prom <arg>**\nSearches generic and faction promissories.\nExample usage: /promissory spy net /promissory ceasefire\n/prom spy net /prom ceasefire\n\n**/relic <arg>**\nSearches relics for the name or partial match.\nExample usage: /relic the obsidian /relic emphidia\n\n**/tech <arg>**\nSearches generic and faction technologies.\nExample usage: /tech dreadnought 2 /tech magen", color=botColor)
-    embed3=discord.Embed(title = "RoboDane Help Page 3/3", description = "**/unit <arg>**\nSearches generic and faction units.\nExample usage: /unit strike wing alpha /unit saturn engine\n\n**/l1hero**\nReturns information about using the L1Z1X hero.\nExample usage: /l1hero\n\n**/titanstiming**\nReturns information about timing windows for the titans abilities.\nExample usage: /titanstiming\n\n**/sardakkcommander**\nReturns information about using the Sardakk N\'orr commander.\nExample usage: /sardakkcommander\n\n**/help**\nReturns information about using RoboDane.\nExample usage: /help", color=botColor)
-
+    embed=discord.Embed(title = "RoboDane Help Page 1/3", description = "**/ability <arg>**\nSearches faction abilities by name.\nExample usage: /ability assimilate /ability entanglement\n\n/**actioncard <arg>** or **/ac <arg>**\nSearches action cards by name.\nExample usage: /actioncard sabotage /actioncard rise\n/ac sabotage /ac rise\n\n**/agenda <arg>**\nSearches agenda cards by name.\nExample usage: /agenda mutiny /agenda ixthian\n\n**/exploration <arg>** or **/exp <arg>**\nSearches exploration cards by name.\nExample usage: /exploration freelancers /exploration fabricators\n/exp freelancers /exp fabricators\n\n**/leaders <arg>**\nSearches leaders by name or faction.\nExample usage: /leader ta zern /leader nekro agent", color=botColor)
+    #embed2=discord.Embed(title = "RoboDane Help Page 2/3", description = "**/objective <arg>** or **/obj <arg>**\nSearches public and secret objectives.\nExample usage: /objective become a legend /objective monument\n/obj become a legend /obj monument\n\n**/planet <arg>**\nSearches planet cards.\nExample usage: /planet bereg /planet elysium\n\n**/promissory <arg>** or **/prom <arg>**\nSearches generic and faction promissories.\nExample usage: /promissory spy net /promissory ceasefire\n/prom spy net /prom ceasefire\n\n**/relic <arg>**\nSearches relics for the name or partial match.\nExample usage: /relic the obsidian /relic emphidia\n\n**/tech <arg>**\nSearches generic and faction technologies.\nExample usage: /tech dreadnought 2 /tech magen", color=botColor)
+    #embed3=discord.Embed(title = "RoboDane Help Page 3/3", description = "**/unit <arg>**\nSearches generic and faction units.\nExample usage: /unit strike wing alpha /unit saturn engine\n\n**/l1hero**\nReturns information about using the L1Z1X hero.\nExample usage: /l1hero\n\n**/titanstiming**\nReturns information about timing windows for the titans abilities.\nExample usage: /titanstiming\n\n**/sardakkcommander**\nReturns information about using the Sardakk N\'orr commander.\nExample usage: /sardakkcommander\n\n**/help**\nReturns information about using RoboDane.\nExample usage: /help", color=botColor)
+    buttons = [
+        manage_components.create_button(style=ButtonStyle.blurple, label="Next Page ->", custom_id="buttonforward"),
+    ]
+    action_row = create_actionrow(*buttons)
+    await ctx.send(embed=embed, components=[action_row])
 bot.run(token)
