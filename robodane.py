@@ -14,6 +14,8 @@ from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from discord_slash import SlashCommand
 from discord_slash.utils import manage_commands
+from discord_slash.utils import manage_components
+from discord_slash.model import ButtonStyle
 
 levDistMin = 2
 fuzzDistMin = 80
