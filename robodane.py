@@ -106,8 +106,8 @@ async def on_error(event, *args, **kwargs):
         option_type=4,
         required=False
     )])
-async def lookUpAbility(ctx, arg, keep=0):
-    cardinfo, match = search(arg, 'abilities.csv')
+async def lookUpAbility(ctx, ability="None", keep=0):
+    cardinfo, match = search(ability, 'abilities.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
@@ -117,7 +117,7 @@ async def lookUpAbility(ctx, arg, keep=0):
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + ability + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -140,8 +140,8 @@ async def lookUpAbility(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def lookUpActionCard(ctx, arg, keep=0):
-    cardinfo, match = search(arg,'actioncards.csv')
+async def lookUpActionCard(ctx, actioncard="None", keep=0):
+    cardinfo, match = search(actioncard,'actioncards.csv')
     if match:
         cardlore = cardinfo["Flavour Text"].split("|")
         separator = "\n"
@@ -153,7 +153,7 @@ async def lookUpActionCard(ctx, arg, keep=0):
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + actioncard + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -176,8 +176,8 @@ async def lookUpActionCard(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def ac(ctx, arg, keep=0):
-    await lookUpActionCard.invoke(ctx, arg, keep)
+async def ac(ctx, ac="None", keep=0):
+    await lookUpActionCard.invoke(ctx, ac, keep)
 
 @slash.slash(
     name="agenda",
@@ -195,8 +195,8 @@ async def ac(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def lookUpAgenda(ctx, arg, keep=0):
-    cardinfo, match = search(arg,'agendas.csv')
+async def lookUpAgenda(ctx, agenda="None", keep=0):
+    cardinfo, match = search(agenda,'agendas.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
@@ -206,7 +206,7 @@ async def lookUpAgenda(ctx, arg, keep=0):
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + agenda + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -229,8 +229,8 @@ async def lookUpAgenda(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def lookUpExplore(ctx, arg, keep=0):
-    cardinfo, match = search(arg,'exploration.csv')
+async def lookUpExplore(ctx, explorationcard="None", keep=0):
+    cardinfo, match = search(explorationcard,'exploration.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         cardlore = cardinfo["Flavour Text"].split("|")
@@ -243,7 +243,7 @@ async def lookUpExplore(ctx, arg, keep=0):
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + explorationcard + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -266,8 +266,8 @@ async def lookUpExplore(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def exp(ctx, arg, keep=0):
-    await lookUpExplore.invoke(ctx, arg, keep)
+async def exp(ctx, explorationcard="None", keep=0):
+    await lookUpExplore.invoke(ctx, explorationcard, keep)
 
 @slash.slash(
     name="leader",
@@ -285,8 +285,8 @@ async def exp(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def lookUpLeader(ctx, arg, keep=0):
-    cardinfo, match = search(arg,'leaders.csv')
+async def lookUpLeader(ctx, leader="None", keep=0):
+    cardinfo, match = search(leader,'leaders.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         cardlore = cardinfo["Flavour Text"].split("|")
@@ -297,7 +297,7 @@ async def lookUpLeader(ctx, arg, keep=0):
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + leader + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -320,15 +320,15 @@ async def lookUpLeader(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def lookUpObjective(ctx, arg, keep=0):
-    cardinfo, match = search(arg,'objectives.csv')
+async def lookUpObjective(ctx, objective="None", keep=0):
+    cardinfo, match = search(objective,'objectives.csv')
     if match:
         embed=discord.Embed(title = cardinfo["Name"], description= "*" + cardinfo["Type"] + " Objective - " + cardinfo["Classification"] + " Phase*\n\n" + cardinfo["Rules Text"], color=botColor)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + objective + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -351,8 +351,8 @@ async def lookUpObjective(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def obj(ctx, arg, keep=0):
-    await lookUpObjective.invoke(ctx, arg, keep)
+async def obj(ctx, objective="None", keep=0):
+    await lookUpObjective.invoke(ctx, objective, keep)
 
 @slash.slash(
     name="planet",
@@ -370,8 +370,8 @@ async def obj(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def lookUpPlanet(ctx, arg, keep=0):
-    cardinfo, match = search(arg,'planets.csv')
+async def lookUpPlanet(ctx, planet="None", keep=0):
+    cardinfo, match = search(planet,'planets.csv')
     if match:
         techSkip = "\n" + cardinfo["Classification"] + " Technology Specialty" if cardinfo["Classification"] else ""
         embed=discord.Embed(title = cardinfo["Name"], description= cardinfo["Type"] + " - " + cardinfo["Res_Inf"] + " " + techSkip, color=botColor)
@@ -383,7 +383,7 @@ async def lookUpPlanet(ctx, arg, keep=0):
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + planet + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -406,8 +406,8 @@ async def lookUpPlanet(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def lookUpProm(ctx, arg, keep=0):
-    cardinfo, match = search(arg,'promissories.csv')
+async def lookUpProm(ctx, promissorynote="None", keep=0):
+    cardinfo, match = search(promissorynote,'promissories.csv')
     if match:
         separator = "\n"
         rulesText = cardinfo["Rules Text"].split("|")
@@ -416,7 +416,7 @@ async def lookUpProm(ctx, arg, keep=0):
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + promissorynote + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -439,8 +439,8 @@ async def lookUpProm(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def prom(ctx, arg, keep=0):
-    await lookUpProm.invoke(ctx, arg, keep)
+async def prom(ctx, promissorynote="None", keep=0):
+    await lookUpProm.invoke(ctx, promissorynote, keep)
 
 @slash.slash(
     name="relic",
@@ -458,8 +458,8 @@ async def prom(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def lookUpRelic(ctx, arg, keep=0):
-    cardinfo, match = search(arg,'relics.csv')
+async def lookUpRelic(ctx, relic="None", keep=0):
+    cardinfo, match = search(relic,'relics.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
@@ -470,7 +470,7 @@ async def lookUpRelic(ctx, arg, keep=0):
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + relic + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -493,8 +493,8 @@ async def lookUpRelic(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def lookUpTech(ctx, arg, keep=0):
-    cardinfo, match = search(arg,'techs.csv')
+async def lookUpTech(ctx, technology="None", keep=0):
+    cardinfo, match = search(technology,'techs.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
@@ -504,7 +504,7 @@ async def lookUpTech(ctx, arg, keep=0):
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + technology + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -527,8 +527,8 @@ async def lookUpTech(ctx, arg, keep=0):
         option_type=4,
         required=False
     )])
-async def lookUpUnit(ctx, arg, keep=0):
-    cardinfo, match = search(arg,'units.csv')
+async def lookUpUnit(ctx, unit="None", keep=0):
+    cardinfo, match = search(unit,'units.csv')
     if match:
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
@@ -538,7 +538,7 @@ async def lookUpUnit(ctx, arg, keep=0):
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
         if cardinfo == []:
-            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + arg + "\" were found. Please try another search.")
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + unit + "\" were found. Please try another search.")
         else:
             embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
     newMessage = await ctx.send(embed=embed)
@@ -593,7 +593,6 @@ async def sardakkcommander(ctx, keep=0):
     if (delete_response or keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles))):
         await newMessage.delete(delay = time_to_delete_response)
 
-@slash.component_callback()
 async def changepage(ctx, pageincrement):
     # Title string
     titlestring = "RoboDane Help Page "
@@ -631,10 +630,10 @@ async def changepage(ctx, pageincrement):
             manage_components.create_button(style=ButtonStyle.blurple, label="<- Previous Page", custom_id="buttonbackward"),
             manage_components.create_button(style=ButtonStyle.blurple, label="Next Page ->", custom_id="buttonforward"),
         ]
-    action_row = create_actionrow(*buttons)
+    action_row = manage_components.create_actionrow(*buttons)
 
     #Editing the message
-    await ctx.edit_origin(embed=embedVar, components=[action_row])
+    await ctx.edit_origin(embed=embed, components=[action_row])
 
 # Help forward button
 @slash.component_callback()
@@ -658,6 +657,6 @@ async def helprobodane(ctx):
     buttons = [
         manage_components.create_button(style=ButtonStyle.blurple, label="Next Page ->", custom_id="buttonforward"),
     ]
-    action_row = create_actionrow(*buttons)
+    action_row = manage_components.create_actionrow(*buttons)
     await ctx.send(embed=embed, components=[action_row])
 bot.run(token)
