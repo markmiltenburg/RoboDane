@@ -176,8 +176,8 @@ async def lookUpActionCard(ctx, actioncard="None", keep=0):
         option_type=4,
         required=False
     )])
-async def ac(ctx, ac="None", keep=0):
-    await lookUpActionCard.invoke(ctx, ac, keep)
+async def ac(ctx, actioncard="None", keep=0):
+    await lookUpActionCard.invoke(ctx, actioncard, keep)
 
 @slash.slash(
     name="agenda",
