@@ -165,7 +165,7 @@ async def lookUpActionCard(ctx, actioncard="None", keep=0):
     guild_ids=guild_ids,
     description="Searches action cards by name. Example usage: /ac sabotage /ac rise",
     options=[manage_commands.create_option(
-        name="actioncard",
+        name="ac",
         description="Action Card Name",
         option_type=3,
         required=True
@@ -176,8 +176,8 @@ async def lookUpActionCard(ctx, actioncard="None", keep=0):
         option_type=4,
         required=False
     )])
-async def ac(ctx, actioncard="None", keep=0):
-    await lookUpActionCard.invoke(ctx, actioncard, keep)
+async def ac(ctx, ac="None", keep=0):
+    await lookUpActionCard.invoke(ctx, ac, keep)
 
 @slash.slash(
     name="agenda",
