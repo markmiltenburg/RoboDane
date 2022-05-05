@@ -238,6 +238,7 @@ async def lookUpExplore(ctx, explorationcard="None", keep=0):
         if cardinfo["Flavour Text"] != "":
             embed.add_field(name = "*Flavour Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
         embed.add_field(name = "Quantity", value = cardinfo["Quantity"], inline = True)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
@@ -292,6 +293,7 @@ async def lookUpLeader(ctx, leader="None", keep=0):
         separator = "\n"
         embed=discord.Embed(title = "__**" + cardinfo["Name"] + "**__", description= "***" + cardinfo["Type"] + " " + cardinfo["Classification"] + "***\n" + cardinfo["Subtitle"] + "\n" + separator.join(cardrules), color=botColor)
         embed.add_field(name = "*Flavour Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
@@ -378,6 +380,7 @@ async def lookUpPlanet(ctx, planet="None", keep=0):
         if cardinfo["Rules Text"] != "":
             legend = cardinfo["Rules Text"].split("|")
             embed.add_field(name = "Legendary Ability", value = "\n".join(legend), inline = False)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
@@ -411,6 +414,7 @@ async def lookUpProm(ctx, promissorynote="None", keep=0):
         separator = "\n"
         rulesText = cardinfo["Rules Text"].split("|")
         embed=discord.Embed(title = cardinfo["Name"], description = "*" + cardinfo["Type"] + " Promissory Note*\n\n" + separator.join(rulesText), color=botColor)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
@@ -499,6 +503,7 @@ async def lookUpTech(ctx, technology="None", keep=0):
         separator = "\n"
         prereqs = ", Requires - " + cardinfo["Prerequisites"] if cardinfo["Prerequisites"] else ""
         embed=discord.Embed(title = cardinfo["Name"], description = "*" + cardinfo["Type"] + " Technology" + prereqs + "*\n\n" + separator.join(cardrules), color=botColor)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
@@ -533,6 +538,7 @@ async def lookUpUnit(ctx, unit="None", keep=0):
         separator = "\n"
         prereqs = "\nUpgrade requires " + cardinfo["Prerequisites"] if cardinfo["Prerequisites"] else ""
         embed=discord.Embed(title = cardinfo["Name"], description = "*" + cardinfo["Type"] + " - " + cardinfo["Classification"] + "*\n\n" + separator.join(cardrules) + prereqs, color=botColor)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
