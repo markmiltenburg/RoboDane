@@ -74,6 +74,8 @@ def search(cardname, filename):
                 #    suggestions.append(row[c1])
     if matchFound == True:
         return savedRow, True
+    elif len(suggestions) == 1:
+    	return savedRow, True
     else:
         return suggestions, False
 
