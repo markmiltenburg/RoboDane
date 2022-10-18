@@ -68,6 +68,7 @@ def search(cardname, filename):
             else:
                 fuzzDist = fuzz.partial_ratio(search_string,orig_name_lower)
                 if fuzzDist >= fuzzDistMin:
+                	savedRow =  row.copy()
                     suggestions.append(row[c1])
                 #levDist = distance(search_string,orig_name_lower)
                 #if levDist <= levDistMin:
