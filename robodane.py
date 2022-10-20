@@ -18,7 +18,7 @@ from discord_slash.utils import manage_components
 from discord_slash.model import ButtonStyle
 
 levDistMin = 2
-fuzzDistMin = 80
+fuzzDistMin = 85
 botColor = 0x2b006b
 delete_response = False
 time_to_delete_response = 300
