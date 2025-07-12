@@ -1,7 +1,8 @@
 Abilities	Name	Type							Rules Text		Notes	Aliases
 Action Cards	Name	Type					Quantity	Source	Rules Text	Flavour Text	Notes	Aliases
 Agendas	Name	Type						Source	Rules Text		Notes	Aliases
-Exploration	Name	Type					Quantity	Source	Rules Text	Flavour Text	Notes	Aliases
+Events	Name	Type						Source	Rules Text		Notes	Aliases
+Exploration	Name	Type	Classification				Quantity	Source	Rules Text	Flavour Text	Notes	Aliases
 Leaders	Name	Type	Classification			Subtitle		Source	Rules Text	Flavour Text	Notes	Aliases
 Lrr	Name	Type	Classification						Rules Text		Notes	Aliases
 Objectives	Name	Type	Classification					Source	Rules Text		Notes	Aliases
