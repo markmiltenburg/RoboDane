@@ -1,84 +1,81 @@
 Name,Type,Classification,Res_Inf,Prerequisites,Subtitle,Quantity,Source,Rules Text,Flavour Text,Notes,Aliases
-Corner the Market,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Control 4 planets that each have the same planet trait.,,,
-Develop Weaponry,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Own 2 unit upgrade technologies.,,,
-Diversify Research,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Own 2 technologies in each of 2 colors.,,,
-Erect a Monument,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Spend 8 resources.,,,
-Expand Borders,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Control 6 planets in non-home systems.,,,
-Found Research Outposts,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Control 3 planets that have technology specialties.,,,
-Intimidate Council,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Have 1 or more ships in 2 systems that are adjacent to Mecatol Rex's system.,,,
-Lead From the Front,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Spend a total of 3 tokens from your tactic and/or strategy pools.,,,
-Negotiate Trade Routes,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Spend 5 trade goods.,,,
-Sway the Council,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Spend 8 influence.,,,
-Amass Wealth,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,"Spend 3 influence, 3 resources, and 3 trade goods.",,,
-Build Defenses,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have 4 or more structures.,,,
-Discover Lost Outposts,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Control 2 planets that have attachments.,,,
-Engineer a Marvel,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have your flagship or a war sun on the board.,,,
-Explore Deep Space,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have units in 3 systems that do not contain planets.,,,
-Improve Infrastructure,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have structures on 3 planets outside of your home system.,,,
-Make History,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,"Have units in 2 systems that contain legendary planets, Mecatol Rex, or anomalies.",,,
-Populate the Outer Rim,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have units in 3 systems on the edge of the game board other than your home system.,,,
-Push Boundaries,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Control more planets that each of 2 of your neighbors.,,,
-Raise a Fleet,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have 5 or more non-fighter ships in 1 system.,,,
-Centralize Galactic Trade,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Spend 10 trade goods.,,,
-Conquer the Weak,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Control 1 planet that is in another player's home system.,,,
-Form Galactic Brain Trust,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Control 5 planets that have technology specialties.,,,
-Found a Golden Age,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Spend 16 resources.,,,
-Galvanize the People,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Spend a total of 6 tokens from your tactic and/or strategy pools.,,,
-Manipulate Galactic Law,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Spend 16 influence.,,,
-Master the Sciences,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Own 2 technologies in each of 4 colors.,,,
-Revolutionize Warfare,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Own 3 unit upgrade technologies.,,,
-Subdue the Galaxy,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Control 11 planets in non-home systems.,,,
-Unify the Colonies,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Control 6 planets that each have the same planet trait.,,,
-Achieve Supremacy,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have your flagship or war sun in another player's home system or the Mecatol Rex system.,,,
-Become a Legend,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,"Have units in 4 systems that contain legendary planets, Mecatol Rex, or anomalies.",,,
-Command an Armada,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have 8 or more non-fighter ships in 1 system.,,,
-Construct Massive Cities,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have 7 or more structures.,,,
-Control the Borderlands,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have units in 5 systems on the edge of the game board other than your home system.,,,
-Hold Vast Reserves,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,"Spend 6 influence, 6 resources, and 6 trade goods.",,,
-Patrol Vast Territories,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have units in 5 systems that do not contain planets.,,,
-Protect the Border,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have structures on 5 planets outside of your home system.,,,
-Reclaim Ancient Monuments,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Control 3 planets that have attachments.,,,
-Rule Distant Lands,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,"Control 2 planets that are each in or adjacent to a different, other player's home system.",,,
-Adapt New Strategies,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,"Own 2 faction technologies. ""Valefar Assimilator"" technologies do not count toward this objective.",,,
-Become the Gatekeeper,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 1 or more ships in a system that contains an alpha wormhole and 1 or more ships in a system that contains a beta wormhole.,,,
-Control the Region,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 1 or more ships in 6 systems.,,,
-Cut Supply Lines,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 1 or more ships in the same system as another player's space dock.,,,
-Destroy their Greatest Ship,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Twilight Imperium 4,Destroy another player's war sun or flagship.,,,
-Establish a Perimeter,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 4 PDS units on the game board.,,,
-Forge an Alliance,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Control 4 cultural planets.,,,
-Form a Spy Network,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Discard 5 action cards.,,,
-Fuel the War Machine,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 3 space docks on the game board.,,,
-Gather a Mighty Fleet,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 5 dreadnoughts on the game board.,,,
-Learn the Secrets of the Cosmos,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 1 or more ships in 3 systems that are each adjacent to an anomaly.,,,
-Make an Example of their World,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Twilight Imperium 4,Use BOMBARDMENT to destroy the last of a player's ground forces on a planet.,,,
-Master the Laws of Physics,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Own 4 technologies of the same color.,,,
-Mine Rare Minerals,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Control 4 hazardous planets.,,,
-Monopolize Production,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Control 4 industrial planets.,,,
-Occupy the Seat of the Empire,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Control Mecatol Rex and have 3 or more ships in its system.,,,
-Spark a Rebellion,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Twilight Imperium 4,Win a combat against a player who has the most victory points.,,,
-Threaten Enemies,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 1 or more ships in a system that is adjacent to another player's home system.,,,
-Turn Their Fleets to Dust,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Twilight Imperium 4,Use SPACE CANNON to destroy the last of a player's ships in a system.,,,
-Unveil Flagship,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Twilight Imperium 4,Win a space combat in a system that contains your flagship. You cannot score this objective if your flagship is destroyed in the combat.,,,
-Become a Martyr,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Lose control of a planet in a home system.,,,
-Betray a Friend,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Win a combat against a player whose promissory note you had in your play area at the start of your tactical action.,,,
-Brave the Void,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Win a combat in an anomaly.,,,
-Darken the Skies,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Win a combat in another player's home system.,,,
-Defy Space and Time,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Have units in the wormhole nexus.,,,
-Demonstrate Your Power,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Have 3 or more non-fighter ships in the active system at the end of a space combat.,,,
-Destroy Heretical Works,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Purge 2 of your relic fragments of any type.,,,
-Dictate Policy,<:TotallyUnscorable:898672154038648903> Secret,Agenda,,,,,Prophecy of Kings,There are 3 or more laws in play.,,,
-Drive the Debate,<:TotallyUnscorable:898672154038648903> Secret,Agenda,,,,,Prophecy of Kings,You or a planet you control are elected by an agenda.,,,
-Establish Hegemony,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Control planets that have a combined influence value of at least 12.,,,
-Fight with Precision,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Use ANTI-FIGHTER BARRAGE to destroy the last of a player's fighters in a system.,,,
-Foster Cohesion,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Be neighbors with all other players.,,,
-Hoard Raw Materials,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Control planets that have a combined resource value of at least 12.,,,
-Mechanize the Military,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Have 1 mech on each of 4 planets.,,,
-Occupy the Fringe,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Have 9 or more ground forces on a planet that does not contain 1 of your space docks.,,,
-Produce en Masse,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Have units with a combined Production value of at least 8 in a single system.,,,
-Prove Endurance,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Be the last player to pass during a game round.,,,
-Seize an Icon,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Control a legendary planet.,,,
-Stake Your Claim,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Control a planet in a system that contains a planet controlled by another player.,,,
-Strengthen Bonds,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Have another player's promissory note in your play area.,,,
-Make an Example of their World Omega,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Codex 3: Vigil,Destroy the last of a player's ground forces on a planet during the bombardment step.,,,
-Turn Their Fleets to Dust Omega,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Codex 3: Vigil,Destroy the last of a player's non-fighter ships in the active system during the space cannon offense step.,,,
-Fight with Precision Omega,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Codex 3: Vigil,Destroy the last of a player's fighters in the active system during the anti-fighter barrage step.,,,
+Corner the Market,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Control 4 planets that each have the same planet trait.,,,4 same trait
+Develop Weaponry,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Own 2 unit upgrade technologies.,,,2 unit upgrades
+Diversify Research,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Own 2 technologies in each of 2 colors.,,,2 in 2
+Erect a Monument,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Spend 8 resources.,,,"8 resources, 8 r, 8r"
+Expand Borders,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Control 6 planets in non-home systems.,,,"6 non-home, 6 non home"
+Found Research Outposts,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Control 3 planets that have technology specialties.,,,"3 tech specs, 3 tech specialties"
+Intimidate Council,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Have 1 or more ships in 2 systems that are adjacent to Mecatol Rex's system.,,,2 adj to rex
+Lead From the Front,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Spend a total of 3 tokens from your tactic and/or strategy pools.,,,3 tokens
+Negotiate Trade Routes,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Spend 5 trade goods.,,,"5 tgs, 5tg, 5 tg, 5tgs"
+Sway the Council,<:Stage1:898752741134974997> Stage 1,Status,,,,,Twilight Imperium 4,Spend 8 influence.,,,"8 influence, 8 inf, 8i"
+Amass Wealth,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,"Spend 3 influence, 3 resources, and 3 trade goods.",,,3/3/3
+Build Defenses,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have 4 or more structures.,,,4 structures
+Discover Lost Outposts,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Control 2 planets that have attachments.,,,2 attachments
+Engineer a Marvel,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have your flagship or a war sun on the board.,,,"flagship, war sun"
+Explore Deep Space,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have units in 3 systems that do not contain planets.,,,"3 empty, 3 empties"
+Improve Infrastructure,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have structures on 3 planets outside of your home system.,,,"3 structures, 3 structures outside home"
+Make History,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,"Have units in 2 systems that contain legendary planets, Mecatol Rex, or anomalies.",,,"2 legendary, 2 anomalies"
+Populate the Outer Rim,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have units in 3 systems on the edge of the game board other than your home system.,,,3 edge
+Push Boundaries,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Control more planets that each of 2 of your neighbors.,,,more than 2 neighbors
+Raise a Fleet,<:Stage1:898752741134974997> Stage 1,Status,,,,,Prophecy of Kings,Have 5 or more non-fighter ships in 1 system.,,,5 ships
+Centralize Galactic Trade,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Spend 10 trade goods.,,,"10 tgs, 10 tg, 10tgs, 10tg"
+Conquer the Weak,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Control 1 planet that is in another player's home system.,,,another player's home
+Form Galactic Brain Trust,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Control 5 planets that have technology specialties.,,,"5 tech specs, 5 tech specialties"
+Found a Golden Age,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Spend 16 resources.,,,"16 resources, 16r, 16 r"
+Galvanize the People,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Spend a total of 6 tokens from your tactic and/or strategy pools.,,,6 tokens
+Manipulate Galactic Law,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Spend 16 influence.,,,"16 influence, 16 inf, 16i"
+Master the Sciences,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Own 2 technologies in each of 4 colors.,,,2 in 4
+Revolutionize Warfare,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Own 3 unit upgrade technologies.,,,3 unit upgrades
+Subdue the Galaxy,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Control 11 planets in non-home systems.,,,"11 non home, 11 non-home"
+Unify the Colonies,<:Stage2:898752750383411241> Stage 2,Status,,,,,Twilight Imperium 4,Control 6 planets that each have the same planet trait.,,,6 same trait
+Achieve Supremacy,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have your flagship or war sun in another player's home system or the Mecatol Rex system.,,,"flagship in rex, war sun in rex"
+Become a Legend,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,"Have units in 4 systems that contain legendary planets, Mecatol Rex, or anomalies.",,,"4 legendaries, 4 anomalies"
+Command an Armada,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have 8 or more non-fighter ships in 1 system.,,,8 ships
+Construct Massive Cities,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have 7 or more structures.,,,7 structures
+Control the Borderlands,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have units in 5 systems on the edge of the game board other than your home system.,,,5 edge
+Hold Vast Reserves,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,"Spend 6 influence, 6 resources, and 6 trade goods.",,,6/6/6
+Patrol Vast Territories,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have units in 5 systems that do not contain planets.,,,"5 empty,  empties"
+Protect the Border,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Have structures on 5 planets outside of your home system.,,,"5 structures outside home, 5 structures"
+Reclaim Ancient Monuments,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,Control 3 planets that have attachments.,,,3 attachments
+Rule Distant Lands,<:Stage2:898752750383411241> Stage 2,Status,,,,,Prophecy of Kings,"Control 2 planets that are each in or adjacent to a different, other player's home system.",,,"2 planets adjacent to home systems, complicated, unclear"
+Adapt New Strategies,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,"Own 2 faction technologies. ""Valefar Assimilator"" technologies do not count toward this objective.",,,2 faction techs
+Become the Gatekeeper,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 1 or more ships in a system that contains an alpha wormhole and 1 or more ships in a system that contains a beta wormhole.,,,alpha and beta
+Control the Region,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 1 or more ships in 6 systems.,,,6 systems
+Cut Supply Lines,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 1 or more ships in the same system as another player's space dock.,,,blockade
+Destroy their Greatest Ship,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Twilight Imperium 4,Destroy another player's war sun or flagship.,,,"destroy flagship, destroy war sun"
+Establish a Perimeter,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 4 PDS units on the game board.,,,4 pds
+Forge an Alliance,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Control 4 cultural planets.,,,4 cultural
+Form a Spy Network,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Discard 5 action cards.,,,"5 action cards, 5 acs"
+Fuel the War Machine,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 3 space docks on the game board.,,,3 space docks
+Gather a Mighty Fleet,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 5 dreadnoughts on the game board.,,,"5 dreads, 5 dreadnoughts"
+Learn the Secrets of the Cosmos,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 1 or more ships in 3 systems that are each adjacent to an anomaly.,,,3 adjacent to anomaly
+Make an Example of their World,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Twilight Imperium 4,Destroy the last of a player's ground forces on a planet during the bombardment step.,,Changed in Codex 3: Vigil,"bombard, bombardment"
+Master the Laws of Physics,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Own 4 technologies of the same color.,,,4 in 1
+Mine Rare Minerals,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Control 4 hazardous planets.,,,4 hazardous
+Monopolize Production,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Control 4 industrial planets.,,,4 industrial
+Occupy the Seat of the Empire,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Control Mecatol Rex and have 3 or more ships in its system.,,,3 ships in rex
+Spark a Rebellion,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Twilight Imperium 4,Win a combat against a player who has the most victory points.,,,"spark, combat against leader"
+Threaten Enemies,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Twilight Imperium 4,Have 1 or more ships in a system that is adjacent to another player's home system.,,,"threaten, ship adjacent to home"
+Turn Their Fleets to Dust,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Twilight Imperium 4,Destroy the last of a player's non-fighter ships in the active system during the space cannon offense step.,,Changed in Codex 3: Vigil,"space cannon, pds"
+Unveil Flagship,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Twilight Imperium 4,Win a space combat in a system that contains your flagship. You cannot score this objective if your flagship is destroyed in the combat.,,,"unveil, flagship"
+Become a Martyr,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Lose control of a planet in a home system.,,,"bam, lose home"
+Betray a Friend,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Win a combat against a player whose promissory note you had in your play area at the start of your tactical action.,,,"betray, promissory combat"
+Brave the Void,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Win a combat in an anomaly.,,,"brave, anomaly combat"
+Darken the Skies,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Win a combat in another player's home system.,,,"darken, combat in home"
+Defy Space and Time,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Have units in the wormhole nexus.,,,"wormhole nexus, nexus"
+Demonstrate Your Power,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Have 3 or more non-fighter ships in the active system at the end of a space combat.,,,"demonstrate, 3 ships"
+Destroy Heretical Works,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Purge 2 of your relic fragments of any type.,,,"2 relic fragments, relic frags"
+Dictate Policy,<:TotallyUnscorable:898672154038648903> Secret,Agenda,,,,,Prophecy of Kings,There are 3 or more laws in play.,,,3 laws
+Drive the Debate,<:TotallyUnscorable:898672154038648903> Secret,Agenda,,,,,Prophecy of Kings,You or a planet you control are elected by an agenda.,,,"elected, get elected"
+Establish Hegemony,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Control planets that have a combined influence value of at least 12.,,,"12 inf, 12 influence, 12i"
+Fight with Precision,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Destroy the last of a player's fighters in the active system during the anti-fighter barrage step.,,Changed in Codex 3: Vigil,"afb, antifighter barrage, anti-fighter barrage"
+Foster Cohesion,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Be neighbors with all other players.,,,neighbors
+Hoard Raw Materials,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Control planets that have a combined resource value of at least 12.,,,"12 res, 12 resources, 12r"
+Mechanize the Military,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Have 1 mech on each of 4 planets.,,,"mech on 4 planets, mechs"
+Occupy the Fringe,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Have 9 or more ground forces on a planet that does not contain 1 of your space docks.,,,"cringe, 9 gfs"
+Produce en Masse,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Have units with a combined Production value of at least 8 in a single system.,,,"produce, 8 prod"
+Prove Endurance,<:TotallyUnscorable:898672154038648903> Secret,Action,,,,,Prophecy of Kings,Be the last player to pass during a game round.,,,last to pass
+Seize an Icon,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Control a legendary planet.,,,legendary
+Stake Your Claim,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Control a planet in a system that contains a planet controlled by another player.,,,"share a system, share"
+Strengthen Bonds,<:TotallyUnscorable:898672154038648903> Secret,Status,,,,,Prophecy of Kings,Have another player's promissory note in your play area.,,,"easy, promissory play area"

@@ -115,6 +115,7 @@ async def lookUpAbility(ctx, ability="None", keep=0):
         separator = "\n"
         embed = discord.Embed(title = cardinfo["Name"], description= cardinfo["Type"] + " Faction Ability", color=botColor)
         embed.add_field(name = "Ability Text", value = separator.join(cardrules), inline = False)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
     else:
@@ -216,6 +217,40 @@ async def lookUpAgenda(ctx, agenda="None", keep=0):
         await newMessage.delete(delay = time_to_delete_response)
 
 @slash.slash(
+    name="breakthrough",
+    guild_ids=guild_ids,
+    description="Searches breakthrough cards by name. Example usage: /breakthrough transfer /breakthrough ascendent",
+    options=[manage_commands.create_option(
+        name="breakthrough",
+        description="Breakthrough Name",
+        option_type=3,
+        required=True
+    ),
+    manage_commands.create_option(
+        name="keep",
+        description="Keep output (1 for keep, 0 for delete), only moderators can keep",
+        option_type=4,
+        required=False
+    )])
+async def lookUpBreakthrough(ctx, breakthrough="None", keep=0):
+    cardinfo, match = search(breakthrough,'breakthroughs.csv')
+    if match:
+        cardrules = cardinfo["Rules Text"].split("|")
+        separator = "\n"
+        embed=discord.Embed(title = cardinfo["Name"], description= cardinfo["Type"] + "\n" + cardinfo["Classification"] + "\n\n" + separator.join(cardrules), color=botColor)
+        embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
+        if cardinfo["Notes"] != "":
+            embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
+    else:
+        if cardinfo == []:
+            embed = discord.Embed(title = "No matches found.", description = "No results for \"" + breakthrough + "\" were found. Please try another search.")
+        else:
+            embed = discord.Embed(title = "No matches found.", description = "Suggested searches: " + ", ".join(cardinfo))
+    newMessage = await ctx.send(embed=embed)
+    if (delete_response and (keep == 0 or (keep == 1 and not check_user(ctx.author.roles, power_user_roles)))):
+        await newMessage.delete(delay = time_to_delete_response)
+
+@slash.slash(
     name="event",
     guild_ids=guild_ids,
     description="Searches event cards by name. Example usage: /event total war /event commerce",
@@ -237,6 +272,8 @@ async def lookUpEvent(ctx, event="None", keep=0):
         cardrules = cardinfo["Rules Text"].split("|")
         separator = "\n"
         embed=discord.Embed(title = cardinfo["Name"], description= "**" + cardinfo["Type"] + ":**\n" + cardinfo["Classification"] + "\n\n" + separator.join(cardrules), color=botColor)
+        if cardinfo["Flavour Text"] != "":
+            embed.add_field(name = "*Flavour Text*", value = "*" + separator.join(cardlore) + "*", inline = False)
         embed.add_field(name = "Source", value = cardinfo["Source"], inline = True)
         if cardinfo["Notes"] != "":
             embed.add_field(name = "Notes", value = cardinfo["Notes"], inline = False)
@@ -413,6 +450,8 @@ async def lookUpPlanet(ctx, planet="None", keep=0):
     if match:
         techSkip = "\n" + cardinfo["Classification"] + " Technology Specialty" if cardinfo["Classification"] else ""
         embed=discord.Embed(title = cardinfo["Name"], description= cardinfo["Type"] + " - " + cardinfo["Res_Inf"] + " " + techSkip, color=botColor)
+        if cardinfo["Quantity"] != "None":
+        	embed.add_field(name = "System Tile Num.", value = cardinfo["Quantity"], inline = True)
         embed.add_field(name = "*Flavour Text*", value = "*" + cardinfo["Flavour Text"] + "*", inline = False)
         if cardinfo["Rules Text"] != "":
             legend = cardinfo["Rules Text"].split("|")
